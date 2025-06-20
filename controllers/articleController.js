@@ -7,7 +7,7 @@ const path = require('path');
 const AdminLog = require('../models/AdminLog');
 const { fileHandler } = require('../middleware/fileHandler');
 const fileManagement = require('../middleware/fileManagement');
-const TagProcessor = require('../utils/TagProcessor');
+const TagProcessor = require('../utils/tagProcessor');
 const tagProcessor = new TagProcessor();
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
@@ -446,134 +446,121 @@ const articleController = {
     },
     
     //createArticle
-    createArticle: async (req, res) => {
-        try {
-            console.log('Creating article with detailed data:', {
-                title: req.body.title,
-                titleLength: req.body.title?.length,
-                contentLength: req.body.content?.length,
-                sectionId: req.body.sectionId,
-                hasTags: !!req.body.tags,
-                filesCount: req.files?.length,
-                fileDetails: req.files?.map(file => ({
-                    originalname: file.originalname,
-                    size: file.size,
-                    mimetype: file.mimetype
-                })),
-                totalRequestSize: req.headers['content-length']
+    // Replace your createArticle method with this fixed version:
+
+createArticle: async (req, res) => {
+    try {
+        console.log('Creating article with detailed data:', {
+            title: req.body.title,
+            titleLength: req.body.title?.length,
+            contentLength: req.body.content?.length,
+            sectionId: req.body.sectionId,
+            hasTags: !!req.body.tags,
+            filesCount: req.files?.length,
+            fileDetails: req.files?.map(file => ({
+                originalname: file.originalname,
+                size: file.size,
+                mimetype: file.mimetype
+            })),
+            totalRequestSize: req.headers['content-length']
+        });
+
+        // Validate required fields
+        if (!req.body.title?.trim()) {
+            return res.status(400).json({
+                success: false,
+                message: 'Title is required'
             });
-    
-            // Create the complete article data object first
-            const articleData = {
-                title: req.body.title,
-                content: req.body.content,
-                author: req.user._id
-            };
+        }
 
+        if (!req.body.content?.trim()) {
+            return res.status(400).json({
+                success: false,
+                message: 'Content is required'
+            });
+        }
 
+        // Create the complete article data object
+        const articleData = {
+            title: req.body.title.trim(),
+            content: req.body.content,
+            author: req.user._id
+        };
 
-            // Handle date range filtering
-            if (req.query.dateRange) {
-                const now = new Date();
-                let dateFilter = {};
-                
-                switch (req.query.dateRange) {
-                    case 'today':
-                        const startOfDay = new Date(now.setHours(0,0,0,0));
-                        dateFilter = { createdAt: { $gte: startOfDay } };
-                        break;
-                    case 'week':
-                        const lastWeek = new Date(now.setDate(now.getDate() - 7));
-                        dateFilter = { createdAt: { $gte: lastWeek } };
-                        break;
-                    case 'month':
-                        const lastMonth = new Date(now.setMonth(now.getMonth() - 1));
-                        dateFilter = { createdAt: { $gte: lastMonth } };
-                        break;
-                    case 'quarter':
-                        const lastQuarter = new Date(now.setMonth(now.getMonth() - 3));
-                        dateFilter = { createdAt: { $gte: lastQuarter } };
-                        break;
+        // Handle sections
+        if (req.body.sectionId) {
+            let sectionIds = Array.isArray(req.body.sectionId) 
+                ? req.body.sectionId 
+                : [req.body.sectionId];
+            articleData.sections = sectionIds;
+        }
+
+        // Handle tags
+        if (req.body.tags) {
+            try {
+                const tags = JSON.parse(req.body.tags);
+                if (Array.isArray(tags)) {
+                    articleData.tags = tags.map(tag => 
+                        tag.toLowerCase().trim()
+                    ).filter(tag => tag.length > 0);
                 }
-            
-                if (Object.keys(dateFilter).length > 0) {
-                    query.$and.push(dateFilter);
-                }
+            } catch (tagError) {
+                console.error('Error processing tags:', tagError);
             }
+        }
 
-            // Handle author filter
-            if (req.query.author && req.query.author !== 'all') {
-                query.$and.push({ author: req.query.author });
+        // Handle temporary duration
+        if (req.body.temporaryDuration) {
+            articleData.isTemporary = true;
+            articleData.temporaryDuration = req.body.temporaryDuration;
+            // Calculate expiration based on duration
+            const now = new Date();
+            switch (req.body.temporaryDuration) {
+                case '72h':
+                    articleData.expiresAt = new Date(now.getTime() + (72 * 60 * 60 * 1000));
+                    break;
+                case '1w':
+                    articleData.expiresAt = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000));
+                    break;
+                case '1m':
+                    articleData.expiresAt = new Date(now);
+                    articleData.expiresAt.setMonth(articleData.expiresAt.getMonth() + 1);
+                    break;
+                default:
+                    throw new Error('Invalid duration specified');
             }
+        }
 
+        // Create article instance with complete data
+        const article = new Article(articleData);
 
-            // Handle sections
-            if (req.body.sectionId) {
-                let sectionIds = Array.isArray(req.body.sectionId) 
-                    ? req.body.sectionId 
-                    : [req.body.sectionId];
-                articleData.sections = sectionIds;
+        // Handle files
+        if (req.files?.length > 0) {
+            try {
+                article.files = req.files.map(file => ({
+                    ...fileHandler.getFileInfo(file),
+                    previewUrl: `/api/articles/files/${file.filename}/preview`,
+                    downloadUrl: `/api/articles/files/${file.filename}/download`
+                }));
+            } catch (fileError) {
+                await fileHandler.deleteFiles(req.files);
+                throw fileError;
             }
-    
-            // Handle tags
-            if (req.body.tags) {
-                try {
-                    const tags = JSON.parse(req.body.tags);
-                    if (Array.isArray(tags)) {
-                        articleData.tags = tags.map(tag => 
-                            tag.toLowerCase().trim()
-                        ).filter(tag => tag.length > 0);
-                    }
-                } catch (tagError) {
-                    console.error('Error processing tags:', tagError);
-                }
-            }
-    
-            // Handle temporary duration
-            if (req.body.temporaryDuration) {
-                articleData.isTemporary = true;
-                articleData.temporaryDuration = req.body.temporaryDuration;
-                // Calculate expiration based on duration
-                const now = new Date();
-                switch (req.body.temporaryDuration) {
-                    case '72h':
-                        articleData.expiresAt = new Date(now.getTime() + (72 * 60 * 60 * 1000));
-                        break;
-                    case '1w':
-                        articleData.expiresAt = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000));
-                        break;
-                    case '1m':
-                        articleData.expiresAt = new Date(now);
-                        articleData.expiresAt.setMonth(articleData.expiresAt.getMonth() + 1);
-                        break;
-                    default:
-                        throw new Error('Invalid duration specified');
-                }
-            }
-    
-            // Create article instance with complete data
-            const article = new Article(articleData);
-    
-            // Handle files
-            if (req.files?.length > 0) {
-                try {
-                    article.files = req.files.map(file => ({
-                        ...fileHandler.getFileInfo(file),
-                        previewUrl: `/api/articles/files/${file.filename}/preview`,
-                        downloadUrl: `/api/articles/files/${file.filename}/download`
-                    }));
-                } catch (fileError) {
-                    await fileHandler.deleteFiles(req.files);
-                    throw fileError;
-                }
-            }
-    
-            await article.save();
+        }
 
-            // Process tags immediately
+        await article.save();
+
+        // Process tags immediately
+        try {
             const tagUpdateJob = require('../jobs/tagUpdateJob');
             await tagUpdateJob.processNewArticle(article._id);
-    
+        } catch (tagError) {
+            console.error('Error processing tags:', tagError);
+            // Don't fail the entire request for tag processing errors
+        }
+
+        // Log creation
+        try {
             await AdminLog.create({
                 adminId: req.user._id,
                 action: 'ARTICLE_CREATED',
@@ -588,39 +575,49 @@ const articleController = {
                     expiresAt: article.expiresAt
                 }
             });
-    
-            await article.populate([
-                { path: 'author', select: 'email firstName lastName' },
-                { path: 'sections', select: 'name' }
-            ]);
-    
-            res.json({
-                success: true,
-                message: article.isTemporary ? 
-                    `Article created successfully. Will expire ${new Date(article.expiresAt).toLocaleString()}.` :
-                    'Article created successfully',
-                data: {
-                    ...article.toObject(),
-                    files: article.files.map(file => ({
-                        ...file.toObject(),
-                        previewUrl: `/api/articles/files/${file.filename}/preview`,
-                        downloadUrl: `/api/articles/files/${file.filename}/download`
-                    }))
-                }
-            });
-        } catch (error) {
-            if (req.files?.length) {
-                await fileHandler.deleteFiles(req.files);
-            }
-    
-            console.error('Error creating article:', error);
-            res.status(500).json({ 
-                success: false, 
-                message: 'Error creating article',
-                error: error.message 
-            });
+        } catch (logError) {
+            console.error('Error creating admin log:', logError);
+            // Don't fail the entire request for logging errors
         }
-    },
+
+        await article.populate([
+            { path: 'author', select: 'email firstName lastName' },
+            { path: 'sections', select: 'name' }
+        ]);
+
+        res.status(201).json({
+            success: true,
+            message: article.isTemporary ? 
+                `Article created successfully. Will expire ${new Date(article.expiresAt).toLocaleString()}.` :
+                'Article created successfully',
+            data: {
+                ...article.toObject(),
+                files: article.files.map(file => ({
+                    ...file.toObject(),
+                    previewUrl: `/api/articles/files/${file.filename}/preview`,
+                    downloadUrl: `/api/articles/files/${file.filename}/download`
+                }))
+            }
+        });
+
+    } catch (error) {
+        // Cleanup any uploaded files if article creation failed
+        if (req.files?.length) {
+            try {
+                await fileHandler.deleteFiles(req.files);
+            } catch (cleanupError) {
+                console.error('Error cleaning up files:', cleanupError);
+            }
+        }
+
+        console.error('Error creating article:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error creating article',
+            error: error.message 
+        });
+    }
+},
 
   
     getTagSuggestions: async (req, res) => {
