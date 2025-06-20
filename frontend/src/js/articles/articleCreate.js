@@ -212,120 +212,149 @@ handleFileChange(e) {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     },
 
-   async  handleCreateArticle(event) {
-        event.preventDefault();
-        const form = event.target;
-        const submitButton = form.querySelector('button[type="submit"]');
-        const errorDiv = document.getElementById('createArticleError');
+  // Replace your existing handleCreateArticle method with this fixed version
+async handleCreateArticle(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const errorDiv = document.getElementById('createArticleError');
+    
+    if (submitButton?.disabled) return;
+    
+    try {
+        ui.showLoading();
+        submitButton.disabled = true;
+        errorDiv?.classList.add('hidden');
         
-        if (submitButton?.disabled) return;
+        if (!auth.isAuthenticated()) {
+            throw new Error('Please login to create an article');
+        }
         
-        try {
-            ui.showLoading();
-            submitButton.disabled = true;
-            errorDiv?.classList.add('hidden');
+        const titleInput = form.querySelector('#articleTitle');
+        const sectionInput = form.querySelector('#sectionId');
+
+        const editor = tinymce.get('articleContent');
+        if (!editor) {
+            throw new Error('Editor not initialized. Please try again.');
+        }
+        const content = editor.getContent();
+
+        const title = titleInput?.value?.trim() || '';
+        if (!title) {
+            throw new Error('Title is required');
+        }
+
+        const selectedSection = this.sections.find(section => section._id === sectionInput?.value);
+        const isFlashInfo = selectedSection?.name === 'Flash Information';
+
+        if (!isFlashInfo && !content.trim()) {
+            throw new Error('Content is required');
+        }
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+        
+        if (sectionInput?.value) {
+            formData.append('sectionId', sectionInput.value);
             
-            if (!auth.isAuthenticated()) {
-                throw new Error('Please login to create an article');
-            }
-            
-            const titleInput = form.querySelector('#articleTitle');
-            const sectionInput = form.querySelector('#sectionId');
-    
-            const editor = tinymce.get('articleContent');
-            if (!editor) {
-                throw new Error('Editor not initialized. Please try again.');
-            }
-            const content = editor.getContent();
-    
-            const title = titleInput?.value?.trim() || '';
-            if (!title) {
-                throw new Error('Title is required');
-            }
-    
-            const selectedSection = this.sections.find(section => section._id === sectionInput?.value);
-            const isFlashInfo = selectedSection?.name === 'Flash Information';
-    
-            if (!isFlashInfo && !content.trim()) {
-                throw new Error('Content is required');
-            }
-    
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('content', content);
-            
-            if (sectionInput?.value) {
-                formData.append('sectionId', sectionInput.value);
+            // Handle Flash Information section and expiration
+            if (isFlashInfo) {
+                const expirationSelect = document.getElementById('expirationTime');
+                const temporaryDuration = expirationSelect?.value;
                 
-                // Handle Flash Information section and expiration
-                if (isFlashInfo) {
-                    const expirationSelect = document.getElementById('expirationTime');
-                    const temporaryDuration = expirationSelect?.value;
-                    
-                    if (!temporaryDuration) {
-                        throw new Error('Please select an expiration time for Flash Information articles');
-                    }
-
-                    if (!['72h', '1w', '1m'].includes(temporaryDuration)) {
-                        throw new Error('Invalid expiration time selected');
-                    }
-
-                    formData.append('temporaryDuration', temporaryDuration);
+                if (!temporaryDuration) {
+                    throw new Error('Please select an expiration time for Flash Information articles');
                 }
-            }
-            
-            if (this.tags.length > 0) {
-                formData.append('tags', JSON.stringify(this.tags));
-            }
-            
-            // Add selected files to FormData
-            if (this.selectedFiles?.length > 0) {
-                this.selectedFiles.forEach(file => {
-                    formData.append('files', file);
-                });
-            }
-    
-            const response = await fetch('/api/articles', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${auth.getToken()}`
-                },
-                body: formData
-            });
-    
-            const responseData = await response.json();
-    
-            if (responseData.success) {
-                ui.showError('Article created successfully!', 'success');
-                
-                // Reset form and files
-                this.selectedFiles = [];
-                this.tags = [];
-                
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Reset form and clean up
-                this.cleanup();
-                
-                // Navigate to home
-                window.location.hash = '#articles';
-            } else {
-                throw new Error(responseData.message || 'Failed to create article');
-            }
-        } catch (error) {
-            console.error('Article creation error:', error);
-            if (errorDiv) {
-                errorDiv.textContent = error.message;
-                errorDiv.classList.remove('hidden');
-            }
-            ui.showError(error.message || 'Error creating article');
-        } finally {
-            ui.hideLoading();
-            if (submitButton) {
-                setTimeout(() => submitButton.disabled = false, 1500);
+
+                if (!['72h', '1w', '1m'].includes(temporaryDuration)) {
+                    throw new Error('Invalid expiration time selected');
+                }
+
+                formData.append('temporaryDuration', temporaryDuration);
             }
         }
-    },
+        
+        if (this.tags.length > 0) {
+            formData.append('tags', JSON.stringify(this.tags));
+        }
+        
+        // Add selected files to FormData
+        if (this.selectedFiles?.length > 0) {
+            this.selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+        }
+
+        console.log('Making API request to create article...');
+
+        const response = await fetch('/api/articles', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${auth.getToken()}`
+            },
+            body: formData
+        });
+
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
+
+        // CRITICAL FIX: Always try to parse JSON response
+        let responseData;
+        try {
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+            
+            if (responseText) {
+                responseData = JSON.parse(responseText);
+            } else {
+                responseData = { success: false, message: 'Empty response from server' };
+            }
+        } catch (parseError) {
+            console.error('Failed to parse response as JSON:', parseError);
+            throw new Error(`Server returned invalid response (Status: ${response.status})`);
+        }
+
+        console.log('Parsed response data:', responseData);
+
+        // Check if the operation was successful based on response data
+        if (response.ok && responseData.success) {
+            ui.showError('Article created successfully!', 'success');
+            
+            // Reset form and files
+            this.selectedFiles = [];
+            this.tags = [];
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Reset form and clean up
+            this.cleanup();
+            
+            // Navigate to articles
+            window.location.hash = '#articles';
+        } else {
+            // Handle server-reported errors
+            const errorMessage = responseData.message || `Server error (${response.status})`;
+            throw new Error(errorMessage);
+        }
+
+    } catch (error) {
+        console.error('Article creation error:', error);
+        
+        if (errorDiv) {
+            errorDiv.textContent = error.message;
+            errorDiv.classList.remove('hidden');
+        }
+        
+        ui.showError(error.message || 'Error creating article');
+        
+    } finally {
+        ui.hideLoading();
+        if (submitButton) {
+            setTimeout(() => submitButton.disabled = false, 1500);
+        }
+    }
+},
 
 // Add a new method to show and manage selected files
 displaySelectedFiles() {
