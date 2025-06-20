@@ -1,0 +1,65 @@
+{
+  "name": "internal-cms",
+  "version": "2.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --max-old-space-size=2048 --expose-gc server.js",
+    "dev": "nodemon --max-old-space-size=2048 --expose-gc server.js",
+    "start:memory": "node --max-old-space-size=4096 --expose-gc --inspect server.js",
+    "start:production": "node --max-old-space-size=2048 --expose-gc server.js",
+    "monitor": "node automated-monitor.js",
+    "build:css": "tailwindcss -i ./frontend/css/input.css -o ./frontend/css/styles.css --minify",
+    "watch:css": "tailwindcss -i ./frontend/css/input.css -o ./frontend/css/styles.css --watch",
+    "dev:css": "npm run watch:css",
+    "copy-libs": "node copy-libs.js",
+    "build": "npm run build:css && npm run copy-libs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "fs-extra": "^11.3.0",
+    "helmet": "^8.1.0",
+    "jsdom": "^26.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mime-types": "^3.0.1",
+    "mongoose": "^8.15.1",
+    "multer": "^2.0.0",
+    "natural": "^8.1.0",
+    "node-cron": "^4.1.0",
+    "path-to-regexp": "^0.1.12",
+    "stopwords": "^0.0.9",
+    "tar": "^7.4.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "pm2": {
+    "apps": [
+      {
+        "name": "internal-cms",
+        "script": "server.js",
+        "node_args": "--max-old-space-size=2048 --expose-gc",
+        "max_memory_restart": "1024M",
+        "instances": 1,
+        "autorestart": true,
+        "watch": false,
+        "max_restarts": 50,
+        "min_uptime": "30s",
+        "restart_delay": 2000
+      }
+    ]
+  }
+}

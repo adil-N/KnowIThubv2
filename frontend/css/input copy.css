@@ -1,0 +1,2561 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Lato - Only need regular and bold weights */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-weight: 700;
+  src: url('/fonts/Lato-Bold.ttf') format('truetype');
+}
+
+/* Bebas Neue - Only regular needed */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+/* IBM Plex Serif - Only regular and bold weights needed */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/IBMPlexSerif-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-weight: 700;
+  src: url('/fonts/IBMPlexSerif-Bold.ttf') format('truetype');
+}
+
+/* Poppins - Only regular, medium, bold, and black weights needed */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 500;
+  src: url('/fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 700;
+  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 900;
+  src: url('/fonts/Poppins-Black.ttf') format('truetype');
+}
+
+/* Ga Maamli - Only regular needed */
+@font-face {
+  font-family: 'Ga Maamli';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/GaMaamli-Regular.ttf') format('truetype');
+}
+
+/* Playfair Display - Only regular needed */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/IBMPlexSerif-Regular.ttf') format('truetype');
+}
+
+/* Rest of your CSS... */
+
+/* Fonts ends HERE
+
+
+
+/* Add these to your input.css file */
+html.dark {
+    color-scheme: dark;
+}
+
+/* Base dark mode styles */
+html.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Navigation and header elements */
+html.dark nav,
+html.dark .bg-white {
+    background-color: #000000 !important;
+    color: #e0e0e0;
+}
+
+/* html.dark button:not(.btn-primary):not(.btn-danger):not(.view-btn):not(.edit-btn):not(.delete-btn),
+html.dark .card-button:not(.view-btn):not(.edit-btn):not(.delete-btn) {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+} */
+
+/* Form elements */
+html.dark input,
+html.dark textarea,
+html.dark select {
+    background-color: #2d2d2d !important;
+    color: #11ff74 !important;
+    border-color: #404040 !important;
+}
+
+/* Cards and containers */
+html.dark .article-card,
+html.dark .bg-gray-100,
+html.dark .shadow-lg {
+    background-color: #000000 !important;
+    border-color: #404040 !important;
+}
+
+/* Modal backgrounds */
+html.dark .modal-content {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+/* Tables */
+html.dark table,
+html.dark th,
+html.dark td {
+    border-color: #404040 !important;
+}
+
+html.dark tr:nth-child(even) {
+    background-color: #2d2d2d !important;
+}
+
+/* Code blocks and editor */
+html.dark pre,
+html.dark code {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+/* Sidebar */
+html.dark #sidebarNav {
+    background-color: #000000 !important;
+    border-right: 1px solid #404040 !important;
+}
+
+/* Links */
+html.dark a:not(.btn-primary):not(.btn-danger) {
+    color: #66b3ff !important;
+}
+
+html.dark a:hover:not(.btn-primary):not(.btn-danger) {
+    color: #99ccff !important;
+}
+
+
+
+/* TinyMCE Editor */
+html.dark .tox-tinymce {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+html.dark .tox .tox-toolbar,
+html.dark .tox .tox-toolbar__primary {
+    background-color: #1e1e1e !important;
+}
+
+/* Dropdown menus */
+html.dark .dropdown-menu {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+/* Toast notifications */
+html.dark .toast {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+/* Status badges and tags */
+html.dark .status-tag {
+    opacity: 0.9;
+}
+
+/* Add these styles to your input.css file */
+
+/* Article Cards Dark Mode */
+html.dark .article-card {
+    background-color: #1e1e1e !important;
+    border-color: #404040 !important;
+}
+
+html.dark .article-card h3 {
+    color: #e0e0e0 !important;
+}
+
+html.dark .article-card p {
+    color: #d1d1d1 !important;
+}
+
+html.dark .article-card .text-gray-500,
+html.dark .article-card .text-gray-600,
+html.dark .article-card .text-gray-700,
+html.dark .article-card .text-gray-800,
+html.dark .article-card .text-gray-900 {
+    color: #e0e0e0 !important;
+}
+
+/* Card Footer and Buttons in Dark Mode */
+html.dark .article-card .px-6.py-3.bg-gray-50 {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+/* Status Tags in Dark Mode */
+html.dark .status-tag {
+    opacity: 0.9;
+}
+
+html.dark .bg-blue-100.text-blue-800 {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    color: #0cf451 !important;
+}
+
+html.dark .bg-yellow-100.text-yellow-800 {
+    background-color: rgba(251, 191, 36, 0.2) !important;
+    color: #fcd34d !important;
+}
+
+html.dark .bg-red-100.text-red-800 {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+    color: #fca5a5 !important;
+}
+
+/* Article Info Section Dark Mode */
+html.dark .bg-gradient-to-b.from-white.to-\[\#f0f4fc\] {
+    background: linear-gradient(to bottom, #1e1e1e, #252525) !important;
+}
+
+/* Sidebar Dark Mode */
+html.dark #sidebar {
+    background-color: #1e1e1e !important;
+    border-right: 1px solid #404040 !important;
+}
+
+html.dark .section-item a {
+    color: #e0e0e0 !important;
+}
+
+html.dark .section-item:hover a {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+html.dark .section-text {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark .gradient-background {
+    opacity: 0.9;
+}
+
+/* Section Tooltips Dark Mode */
+html.dark .section-tooltip {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #404040 !important;
+}
+
+/* Sidebar Toggle Button Dark Mode */
+html.dark #sidebarToggle {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #404040 !important;
+}
+
+/* Filter Bar Dark Mode */
+html.dark .bg-gray-100.text-gray-700 {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+
+
+
+
+/* Dark mode specific styles with higher specificity */
+html.dark #flashInfoBanner,
+html.dark #flashInfoBanner.bg-white,
+html.dark #flashInfoBanner[class*="bg-"] {
+    background-color: #171616 !important;
+    border-color: #404040 !important;
+    color: #FF2400 !important;
+}
+
+/* First article container in dark mode */
+html.dark .flash-first-article {
+    background-color: rgba(31, 31, 31, 0.95) !important;
+}
+
+html.dark .flash-article,
+html.dark a.flash-article {
+    color: #FF2400 !important; /* Keep red color */
+    font-weight: 700;
+}
+
+html.dark .flash-article:hover,
+html.dark a.flash-article:hover {
+    color: #f06292 !important; /* Lighter red on hover */
+}
+
+/* Override any other link colors specifically for flash banner */
+html.dark #flashInfoBanner .flash-article,
+html.dark #flashInfoBanner a.flash-article {
+    color: #FF2400 !important;
+}
+
+html.dark #flashInfoBanner .flash-article:hover,
+html.dark #flashInfoBanner a.flash-article:hover {
+    color: #F2EA02 !important;
+    font-size: 1.2rem;
+}
+
+/* Scroll container in dark mode */
+html.dark .flash-scroll-container {
+    background-color: transparent !important;
+}
+/* Links and Navigation Dark Mode NAVBAR and SIDEBAR TEXT */
+html.dark a:not(.btn-primary):not(.btn-danger) {
+    color: #c5c5c5 !important;
+}
+
+html.dark a:hover:not(.btn-primary):not(.btn-danger) {
+    color: #95fd93 !important;
+}
+
+/* General Text Colors Dark Mode */
+html.dark .text-gray-500 { color: #d1d1d1 !important; }
+html.dark .text-gray-600 { color: #e0e0e0 !important; }
+html.dark .text-gray-700 { color: #e5e5e5 !important; }
+html.dark .text-gray-800 { color: #ebebeb !important; }
+html.dark .text-gray-900 { color: #f5f5f5 !important; }
+
+/* Button States Dark Mode */
+html.dark .hover\:bg-gray-100:hover {
+    background-color: #404040 !important;
+}
+
+/* Search Bar Dark Mode */
+html.dark input[type="search"] {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+}
+
+html.dark input[type="search"]::placeholder {
+    color: #9ca3af !important;
+}
+
+/* Specific Article Card Components */
+html.dark .article-card-content {
+    background-color: #1e1e1e !important;
+}
+
+html.dark .article-card-footer {
+    background-color: #2d2d2d !important;
+    border-top-color: #404040 !important;
+}
+
+
+/* Fix button container background in dark mode */
+html.dark .article-card .px-6.py-3.bg-gray-50,
+html.dark .article-card-footer {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+/* Fix button container background in dark mode */
+html.dark .article-card .px-6.py-3.bg-gray-50,
+html.dark .article-card-footer {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+/* Keep button containers dark while excluding buttons themselves */
+html.dark .button-container {
+    background-color: #2d2d2d !important;
+}
+
+/* Remove any dark mode overrides for buttons and let them use their original styling
+html.dark button:not(.btn-primary):not(.btn-danger):not(.view-btn):not(.edit-btn):not(.delete-btn),
+html.dark .card-button:not(.view-btn):not(.edit-btn):not(.delete-btn) {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+} */
+
+/* Update card footer background without affecting buttons */
+html.dark .article-card .bg-gray-50:not(.view-btn):not(.edit-btn):not(.delete-btn) {
+    background-color: #2d2d2d !important;
+}
+
+/* Ensure proper text contrast on non-button elements */
+html.dark .card-button:not(.view-btn):not(.edit-btn):not(.delete-btn) {
+    color: #e0e0e0 !important;
+}
+/* Ensure button container has proper dark mode style */
+html.dark .button-container {
+    background-color: #2d2d2d !important;
+}
+
+/* Update card footer background */
+html.dark .article-card .bg-gray-50 {
+    background-color: #2d2d2d !important;
+}
+
+/* Ensure proper text contrast on buttons */
+html.dark .card-button {
+    color: white !important;
+}
+
+
+/* Add these styles to your input.css file */
+
+/* Article Card Button Container Dark Mode */
+html.dark .article-card .px-6.py-3.bg-gray-50,
+html.dark .article-card-footer {
+    background-color: #1a1a1a !important; /* Darker background for button container */
+    border-color: #404040 !important;
+}
+
+/* Article Details Container Styling in Dark Mode */
+html.dark .bg-white.rounded-lg.shadow-sm {
+    background-color: #1e1e1e !important;
+    border: 1px solid #404040 !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark .my-container {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+}
+
+
+/* Article Details Container Styling in Dark Mode */
+html.dark .bg-white.rounded-lg.shadow-sm {
+    background-color: #1e1e1e !important;
+    border: 1px solid #404040 !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Any other containers that need to be targeted */
+html.dark .my-container {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+}
+
+
+/* Specific borders for different section types */
+html.dark .border-blue-500 {
+    border-color: #3b82f6 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+html.dark .border-green-500 {
+    border-color: #22c55e !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+html.dark .border-indigo-500 {
+    border-color: #6366f1 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+html.dark .border-yellow-500 {
+    border-color: #eab308 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+/* Comment Section Enhancement in Dark Mode */
+html.dark #commentsSection {
+    border: 1px solid #404040 !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark .comment {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333333 !important;
+}
+
+/* Individual comments in dark mode */
+html.dark .bg-gray-50 {
+    background-color: #1a1a1a !important;
+    border: 1px solid #333333 !important;
+}
+
+/* Comment content area in dark mode */
+html.dark .comment-content.bg-white {
+    background-color: #242424 !important;
+    border-color: #404040 !important;
+}
+
+/* Enhance section visibility with glowing borders in dark mode */
+html.dark .rounded-lg.shadow-sm {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+
+
+/* Add these styles to your input.css file */
+
+/* Admin Panel Dark Mode Styles */
+html.dark .bg-white.rounded-lg.shadow-md {
+    background-color: #1a1a1a !important;
+    border: 1px solid #404040 !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Section Cards in Admin Panel */
+html.dark .p-4.bg-blue-100 {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+html.dark .p-4.bg-green-100 {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+    border: 1px solid rgba(34, 197, 94, 0.2) !important;
+}
+
+html.dark .p-4.bg-purple-100 {
+    background-color: rgba(168, 85, 247, 0.1) !important;
+    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+}
+
+html.dark .p-4.bg-indigo-100 {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+}
+
+html.dark .p-4.bg-amber-100 {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+/* Table Styles */
+html.dark table {
+    background-color: #1e1e1e !important;
+    border: 1px solid #404040 !important;
+}
+
+html.dark .bg-gray-50 {
+    background-color: #242424 !important;
+}
+
+html.dark th {
+    background-color: #242424 !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+}
+
+html.dark td {
+    border-color: #404040 !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark tr:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* Modal Styles */
+html.dark .bg-white.rounded-lg.p-6 {
+    background-color: #1e1e1e !important;
+    border: 1px solid #404040 !important;
+}
+
+html.dark .text-gray-500 {
+    color: #a0aec0 !important;
+}
+
+html.dark .text-gray-600 {
+    color: #cbd5e0 !important;
+}
+
+html.dark .text-gray-700 {
+    color: #e2e8f0 !important;
+}
+
+/* Form Input Fields */
+html.dark input.bg-gray-50 {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Section Headers */
+html.dark h2.text-2xl,
+html.dark h3.font-semibold {
+    color: #e0e0e0 !important;
+}
+
+/* Enhanced Button Visibility */
+html.dark button {
+    border: 1px solid transparent !important;
+}
+
+html.dark button:hover {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Action Buttons */
+html.dark .bg-yellow-500 {
+    border: 1px solid rgba(234, 179, 8, 0.3) !important;
+}
+
+html.dark .bg-red-500 {
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Status Indicators */
+html.dark .text-green-500 {
+    color: #22c55e !important;
+}
+
+html.dark .text-red-500 {
+    color: #ef4444 !important;
+}
+
+
+
+
+
+/* Add these styles to your input.css file */
+
+/* Sidebar Section Toggle Dark Mode */
+html.dark #sectionsToggle {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark #sectionsToggle:hover {
+    background-color: #2d2d2d !important;
+}
+
+/* Article Section Text Dark Mode */
+html.dark #sectionsToggle span {
+    color: #e0e0e0 !important;
+}
+
+html.dark #sectionsNav a {
+    color: #e0e0e0 !important;
+}
+
+html.dark #sectionsNav a:hover {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Sidebar Section Items Dark Mode */
+html.dark .section-item a {
+    color: #e0e0e0 !important;
+}
+
+html.dark .section-item a:hover {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Toggle Arrow Dark Mode */
+html.dark #sectionArrow {
+    stroke: #e0e0e0 !important;
+}
+
+/* Active Section Highlight in Dark Mode */
+html.dark .section-item a.active,
+html.dark #sectionsNav a.active {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+    border-left: 2px solid #3b82f6 !important;
+}
+
+
+/* Add these styles to your input.css file */
+
+/* TinyMCE Editor Dark Mode Styles */
+/* Add these styles to your input.css file */
+
+/* TinyMCE Content Area Dark Mode */
+html.dark .tox-edit-area {
+    background-color: #1e1e1e !important;
+}
+
+
+
+
+/* Make sure the content area gets the right background */
+html.dark .tox .tox-edit-area > iframe {
+    background-color: #262626 !important;
+}
+
+/* Content area text color and placeholder */
+html.dark .mce-content-body {
+    background-color: #262626 !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    color: #6b7280 !important;
+}
+
+/* Selected text highlight */
+html.dark .mce-content-body ::selection {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+/* Links in editor */
+html.dark .mce-content-body a {
+    color: #60a5fa !important;
+}
+
+/* Table borders in editor */
+html.dark .mce-content-body table {
+    border-color: #404040 !important;
+}
+
+html.dark .mce-content-body td,
+html.dark .mce-content-body th {
+    border-color: #404040 !important;
+}
+
+/* Code blocks in editor */
+html.dark .mce-content-body pre {
+    background-color: #1a1a1a !important;
+    border-color: #404040 !important;
+    color: #e0e0e0 !important;
+}
+/* TinyMCE Editor Dark Mode Styles */
+html.dark .tox-tinymce {
+    background-color: #1e1e1e !important;
+    border-color: #404040 !important;
+}
+
+html.dark .tox .tox-toolbar,
+html.dark .tox .tox-toolbar__primary {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+
+
+html.dark .mce-content-body {
+    background-color: #262626 !important;
+    color: #e0e0e0 !important;
+}
+
+/* TinyMCE Content Area Dark Mode */
+html.dark .tox-edit-area {
+    background-color: #1e1e1e !important;
+}
+
+
+/* TinyMCE Editor Styles */
+.tox-edit-area__iframe {
+    /* background-color: #ec1313 !important; */
+    color: #8a8181 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    /* padding: 4px !important; */
+}
+
+/* Make sure the content area gets the right background */
+html.dark .tox .tox-edit-area > iframe {
+    background-color: #262626 !important;
+}
+
+/* Content area text color and placeholder */
+html.dark .mce-content-body {
+    background-color: #262626 !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    color: #6b7280 !important;
+}
+
+/* Menubar and Toolbar */
+html.dark .tox .tox-menubar,
+html.dark .tox .tox-toolbar,
+html.dark .tox .tox-toolbar__overflow,
+html.dark .tox .tox-toolbar__primary {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+/* Buttons and Icons */
+html.dark .tox .tox-tbtn {
+    color: #e0e0e0 !important;
+}
+
+html.dark .tox .tox-tbtn svg {
+    fill: #e0e0e0 !important;
+}
+
+html.dark .tox .tox-tbtn:hover {
+    background-color: #404040 !important;
+}
+
+/* Active Button State */
+html.dark .tox .tox-tbtn--enabled,
+html.dark .tox .tox-tbtn--active {
+    background-color: #404040 !important;
+}
+
+/* Button Text */
+html.dark .tox .tox-tbtn__select-label {
+    color: #e0e0e0 !important;
+}
+
+/* Dropdown Arrows */
+html.dark .tox .tox-tbtn__caret {
+    fill: #e0e0e0 !important;
+}
+
+/* Separators */
+html.dark .tox .tox-toolbar__group:not(:last-of-type) {
+    border-right-color: #404040 !important;
+}
+
+
+
+/* Status Bar */
+html.dark .tox .tox-statusbar  .tox-tinymce-inline .tox-editor-header{
+    background-color: #2d2d2d !important;
+    border-top-color: #404040 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Menu Items */
+html.dark .tox .tox-collection--list .tox-collection__item {
+    color: #e0e0e0 !important;
+}
+
+html.dark .tox .tox-menu  {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    
+}
+
+html.dark .tox .tox-collection__item:hover {
+    background-color: #404040 !important;
+}
+
+/* Dark mode pagination styles */
+
+/* Container for pagination buttons */
+html.dark .flex.items-center.space-x-2 {
+    background-color: transparent;
+}
+
+/* Individual pagination buttons */
+html.dark [data-page] {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #404040;
+}
+
+/* Selected/active pagination button */
+html.dark [data-page].bg-blue-500 {
+    background-color: #3b82f6 !important;
+    color: white !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+html.dark .mce-content-body{
+    background-color: #171616;
+    color: #e0e0e0;
+}
+
+/* Hover state for pagination buttons */
+html.dark [data-page]:hover:not(.bg-blue-500) {
+    background-color: #404040;
+    border-color: #4b5563;
+}
+
+/* Previous/Next buttons */
+html.dark [data-action="prev-page"],
+html.dark [data-action="next-page"] {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #404040;
+}
+
+/* Hover state for prev/next buttons */
+html.dark [data-action="prev-page"]:not(:disabled):hover,
+html.dark [data-action="next-page"]:not(:disabled):hover {
+    background-color: #404040;
+    border-color: #4b5563;
+}
+
+/* Disabled state for prev/next buttons */
+html.dark [data-action="prev-page"]:disabled,
+html.dark [data-action="next-page"]:disabled {
+    background-color: #1e1e1e;
+    color: #6b7280;
+    border-color: #374151;
+}
+
+/* Pagination text */
+html.dark .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+/* Ellipsis (...) styling */
+html.dark .flex.space-x-1 span:not([data-page]) {
+    color: #9ca3af;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add spacing below fixed navbar */
+body {
+    padding-top: 2.5rem;
+    /* min-height: 100%; */
+}
+/* Add or update these styles in input.css */
+#searchBar {
+    display: fixed;
+    align-items: center; /* Vertically align the search bar in the center */
+    justify-content: center; /* Optionally, you can use this if you want to center it horizontally as well */
+    flex: 1; /* Allow it to take up available space */
+}
+
+#searchForm input[type="search"] {
+    height: 2rem;
+    padding: 0.25rem 2rem; /* Adjust padding for proper spacing */
+    font-size: 0.75rem;
+    line-height: 1.5rem; /* Ensure text inside input is vertically centered */
+}
+
+#searchForm button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* Ensure navbar stays on top */
+.container:first-child {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Custom styles */
+@layer components {
+    .form-input {
+        @apply w-full px-3 py-2 border rounded;
+    }
+
+    .btn-primary {
+        @apply w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600;
+    }
+    .section-header {
+        width: 100%;
+        position: relative;
+        font-size: 1.5rem !important; /* Section headers font size */
+        font-weight: 600;
+    }
+
+    .gradient-background {
+        background-image: linear-gradient(115deg, #cf4fbc, #fad648, #a767e5, #12bcfe, #44ce7b);
+        border-radius: 6px;
+        text-align: center;
+        overflow: hidden;
+        background-size: 400% 400%;
+    }
+
+    .gradient-background:hover {
+        animation: gradientSlide 1.3s ease-in infinite;
+    }
+
+    .section-text {
+        padding: 14px 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #1c1a1a;
+        display: block;
+        margin: 3px;
+        background: #ffffff;
+        border-radius: 3px;
+    }
+
+    @keyframes gradientSlide {
+        0% { background-position: 0px; }
+        20% { background-position: -110px; }
+        35% { background-position: -180px; }
+        50% { background-position: -210px; }
+        80% { background-position: -350px; }
+        100% { background-position: -390px; }
+    }
+
+}
+
+
+.navbar-logo {
+    background-color: #000000;
+    max-width: 6rem; /* 96px */
+    max-height: 3.8rem; /* 96px */
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    /* border-radius: 0.5rem; Slightly more rounded */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+   
+
+}
+
+#homeLogoLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: transform 0.2s ease;
+    background-color: #171616;
+}
+
+#homeLogoLink:hover {
+    transform: scale(1.5); /* Optional: slight zoom on hover */
+}
+
+#sectionsNav {
+    max-height: 2000px; /* Start expanded */
+    opacity: 1;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+#sectionArrow {
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+/* Modern Section Tooltip Styles */
+.section-tooltip {
+    position: absolute;
+    background: linear-gradient(135deg, #667eea 0%, #171618 100%);
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 240px;
+    min-width: 140px;
+    word-wrap: break-word;
+    line-height: 1.4;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: normal;
+}
+
+/* Arrow styles for different positions */
+.section-tooltip::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Right placement (default) */
+.section-tooltip.tooltip-right::before,
+.section-tooltip::before {
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #667eea transparent transparent;
+}
+
+/* Left placement */
+.section-tooltip.tooltip-left::before {
+    top: 50%;
+    right: -8px;
+    left: auto;
+    transform: translateY(-50%);
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent #667eea;
+}
+
+/* Top placement */
+.section-tooltip.tooltip-top::before {
+    bottom: -8px;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+    border-width: 8px 8px 0 8px;
+    border-color: #667eea transparent transparent transparent;
+}
+
+/* Bottom placement */
+.section-tooltip.tooltip-bottom::before {
+    top: -8px;
+    left: 50%;
+    bottom: auto;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent #667eea transparent;
+}
+
+.section-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.section-tooltip .tooltip-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section name container styles */
+.section-name-container {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    margin: -0.25rem;
+}
+
+.section-name-container:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+    transform: translateX(2px);
+}
+
+.section-name {
+    font-weight: 500;
+    color: #374151;
+    transition: color 0.2s ease;
+}
+
+.section-name-container:hover .section-name {
+    color: #3b82f6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-tooltip {
+        max-width: 220px;
+        min-width: 120px;
+        font-size: 0.7125rem;
+        padding: 0.625rem 0.875rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .section-tooltip {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .section-tooltip.tooltip-right::before,
+    .section-tooltip::before {
+        border-color: transparent #1f2937 transparent transparent;
+    }
+    
+    .section-tooltip.tooltip-left::before {
+        border-color: transparent transparent transparent #1f2937;
+    }
+    
+    .section-tooltip.tooltip-top::before {
+        border-color: #1f2937 transparent transparent transparent;
+    }
+    
+    .section-tooltip.tooltip-bottom::before {
+        border-color: transparent transparent #1f2937 transparent;
+    }
+    
+    .section-name {
+        color: #e5e7eb;
+    }
+    
+    .section-name-container:hover {
+        background-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    .section-name-container:hover .section-name {
+        color: #60a5fa;
+    }
+}
+
+/* High z-index to ensure tooltip appears above everything */
+.section-tooltip {
+    z-index: 99999 !important;
+}
+
+/* Ensure table container doesn't hide overflow */
+.overflow-x-auto {
+    overflow: visible !important;
+}
+
+/* Table positioning context */
+table {
+    position: relative;
+}
+
+/* Add bottom margin to prevent status bar conflicts */
+body {
+    padding-bottom: 80px !important;
+}
+
+/* Additional safeguard for tooltip positioning */
+.section-tooltip.tooltip-bottom {
+    margin-bottom: 60px; /* Extra space when bottom positioned */
+}
+
+/* Ensure tooltips don't get clipped by containers */
+.w-full {
+    overflow: visible !important;
+}
+
+/* Section management specific styles */
+.section-management-container {
+    padding-bottom: 80px;
+    min-height: calc(100vh - 160px);
+}
+
+/* Animation keyframes for subtle entrance */
+@keyframes tooltipSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.section-tooltip.show {
+    animation: tooltipSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure tooltip stays within viewport */
+.section-tooltip.tooltip-left::before {
+    left: auto;
+    right: -6px;
+    border-width: 6px 0 6px 6px;
+    border-color: transparent transparent transparent #667eea;
+}
+
+/* Table row hover enhancement */
+.section-row:hover {
+    background-color: rgba(249, 250, 251, 0.8);
+    transition: background-color 0.2s ease;
+}
+
+/* Drag handle enhancement */
+.drag-handle {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.section-row:hover .drag-handle {
+    opacity: 1;
+}
+
+
+/* Search Form Styles */
+#searchForm {
+    margin-bottom: 0px;
+}
+
+#searchForm button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#searchForm button:hover {
+    background: transparent;
+}
+
+/* If you want to style the search input specifically */
+#searchForm input[type="search"] {
+    width: 100%;
+    padding: 0.5rem 2.5rem;
+    border: 1px solid #0a51e0;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+#searchForm input[type="search"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Status Tags */
+.status-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.status-tag-new {
+    background-color: #DEF7EC;
+    color: #03543F;
+}
+
+.status-tag-updated {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.status-tag-hidden {
+    background-color: #FEE2E2;
+    color: #991B1B;
+}
+
+/* Article Card Transitions */
+
+.article-card {
+    height: 384px !important; /* equivalent to h-96 */
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative;
+    z-index: 35;
+    pointer-events: auto;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    border-left-width: 6px !important;
+    transition: all 0.2s ease;
+}
+.article-card-content {
+    flex: 1 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Important for proper content scrolling */
+    max-height: calc(384px - 76px); /* Total height minus footer height */
+    overflow: hidden;
+}
+.article-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+    min-height: 3.5rem;
+    max-height: 5.25rem; /* 3 lines of text */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.article-card-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+/* Article Card Footer - Fixed height and positioning */
+.article-card-footer {
+    flex-shrink: 0;
+    height: 76px !important; /* Fixed height for footer */
+    padding: 1rem 1.5rem;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    margin-top: auto;
+}
+
+.button-container {
+    position: relative;
+    z-index: 36;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.card-button {
+    min-width: 80px;
+    height: 36px !important; /* Fixed height for buttons */
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.article-card.border-green-500 {
+    border-left-color: #10B981 !important; /* Green for new */
+}
+
+.article-card.border-yellow-500 {
+    border-left-color: #F59E0B !important; /* Yellow for updated */
+}
+
+.article-card.border-gray-300 {
+    border-left-color: #D1D5DB !important; /* Gray for read */
+}
+
+/* Force the border to be visible */
+
+.border-l-6 {
+    border-left-width: 6px !important;
+}
+
+
+.article-card.read {
+    opacity: 0.75;
+}
+
+/* Utility Classes */
+.clear-search {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 8px;
+}
+
+.search-filter, .date-filter {
+    border-color: #e5e7eb;
+}
+
+.article-preview mark {
+    background-color: yellow;
+    padding: 2px;
+}
+
+/* Search Results */
+#searchResults .article-preview {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#searchPagination {
+    margin-top: 20px;
+}
+
+/* Article Content Styles */
+.article-content {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-content h1, .article-content h2, .article-content h3, 
+.article-content h4, .article-content h5, .article-content h6 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.article-content ul, .article-content ol {
+    margin-bottom: 15px;
+    padding-left: 30px;
+}
+
+.article-content blockquote {
+    border-left: 3px solid #ccc;
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+}
+
+/* User Profile Styles */
+#userProfile, #userContributions {
+    margin-bottom: 20px;
+}
+
+#userProfile h2, #userContributions h3 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Preview Styles */
+.article-preview, .comment-preview {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.article-preview h5, .comment-preview p {
+    margin: 5px 0;
+}
+
+/* Text Wrapping */
+.prose p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.break-words {
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    hyphens: auto;
+}
+
+/* Comment Styles */
+.comment-preview p, .comment-content p {
+    max-width: 100%;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+#commentsList {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#commentsList > div {
+    width: 100%;
+}
+
+#commentsList p {
+    width: 100%;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.comment-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.comment-actions {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.comment-actions:hover {
+    opacity: 1;
+}
+
+.comment-text {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Line Clamp */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+
+
+/* NAVBAR STYLING */
+#sidebarNav {
+    transition: transform 0.6s ease;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    font-family: "Ga Maamli", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    z-index: 10;
+}
+/* Ensure buttons are clickable */
+.article-card .button-container {
+    position: relative;
+    z-index: 25; /* Higher than article card */
+  }
+  /* Specific fix for view button */
+.view-btn,
+.edit-btn, 
+.delete-btn {
+    position: relative;
+    z-index: 37;
+    pointer-events: auto !important;
+}
+
+/* Adjust main content area when sidebar is collapsed */
+.container[role="main"].sidebar-collapsed {
+    position: relative;
+    z-index: 35;
+    transition: margin-left 0.3s ease;
+    pointer-events: auto;
+}
+/* Ensure proper stacking context */
+.grid {
+    position: relative;
+    z-index: 15;
+  }
+
+
+.section-text, 
+#sectionsToggle span,
+#sectionsNav a {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem !important;
+}
+
+#sidebarNav nav a {
+    transition: background-color 0.2s ease;
+    font-size: 1rem
+}
+
+
+
+#sidebarToggle {
+    pointer-events: auto !important;
+    z-index: 50 !important;
+    position: fixed !important;
+    top: 6.7rem !important;
+    left: 13rem; /* Position at the edge of expanded sidebar */
+    width: 25px; /* Set explicit width */
+    height: 38px; /* Set explicit height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(197, 204, 232);
+    padding: 0.5rem;
+    border-radius: 0 0.375rem 0.375rem 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: left 0.3s ease, transform 0.3s ease;
+    
+}
+
+.sidebar-collapsed #sidebarToggle {
+    left: 2rem; /* Position at the edge of collapsed sidebar */
+}
+
+
+/* Ensure proper sidebar button position in both states */
+body:not(.sidebar-collapsed) #sidebarToggle {
+    left: 208px !important; /* 13rem in pixels */
+}
+body.sidebar-collapsed #sidebarToggle {
+    left: 32px !important; /* 2rem in pixels */
+    transform: rotate(180deg);
+}
+
+body:not(.sidebar-collapsed) .container[role="main"] {
+    margin-left: 13rem;
+    width: calc(100% - 13rem);
+}
+
+body.sidebar-collapsed .container[role="main"] {
+    margin-left: 2rem;
+    width: calc(100% - 2rem);
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 1024px) {
+    #sidebarToggleBtn {
+        left: 1rem !important;
+    }
+    
+    .container[role="main"] {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+#sidebarToggleBtn:hover {
+    background-color: #f3f4f6 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    color: #1f2937 !important;
+}
+
+#sidebarToggleIcon {
+    width: 10px !important;
+    height: 10px !important;
+    transition: transform 0.3s ease !important;
+    stroke-width: 2.5 !important;
+    transform: rotate(0deg) !important; /* Default state - pointing right */
+}
+
+/* When sidebar is collapsed, rotate to point left */
+.sidebar-collapsed #sidebarToggleIcon {
+    transform: rotate(180deg) !important;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 1024px) {
+    #sidebarToggleBtn {
+        left: 1rem !important;
+    }
+    .sidebar-collapsed #sidebarToggleBtn {
+        left: 1rem !important;
+    }
+}
+
+
+/* Update the container styles */
+.container[role="main"] {
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.container[role="main"].sidebar-expanded {
+    margin-left: 13rem;
+    max-width: calc(100% - 13rem);
+}
+
+.container[role="main"].sidebar-collapsed {
+    margin-left: 2rem;
+    max-width: calc(100% - 2rem);
+}
+@media (max-width: 1024px) {
+    #sidebarNav, #sidebarToggleBtn {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+/* Sidebar Specific Styles */
+#sidebarContainer {
+    position: fixed;
+    pointer-events: none;
+    top: 4rem; /* Adjust to match navbar height */
+    left: 0;
+    bottom: 0;
+    z-index: 30;
+    width: 13rem;
+    transition: width 0.3s ease;
+}
+/* Add transition for text elements */
+#sectionsNav span, 
+#sectionsToggle span, 
+.section-text {
+    transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+/* Handle text visibility in collapsed state */
+.sidebar-collapsed #sectionsNav span, 
+.sidebar-collapsed #sectionsToggle span, 
+.sidebar-collapsed .section-text {
+    opacity: 0;
+    display: none;
+}
+#sidebar {
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    position: relative;
+    z-index: 30;
+    padding-bottom: 4rem;
+}
+
+
+
+.section-item:hover .section-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    #sidebarContainer {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-expanded #sidebarContainer {
+        transform: translateX(0);
+    }
+
+    main {
+        margin-left: 0 !important;
+    }
+}
+
+
+/* Rich Editor Styles */
+.excel-preview {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.excel-preview td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.excel-preview tr:nth-child(1) {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.pdf-preview {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.pdf-iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+}
+
+.excel-table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.excel-table td, .excel-table th {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+}
+.pdf-preview-header {
+    padding: 8px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pdf-preview-header a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.pdf-preview-header a:hover {
+    text-decoration: underline;
+}
+.article-content {
+    line-height: 1.6;
+}
+
+.article-content pre {
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.article-content code {
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.article-content table td,
+.article-content table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.article-content table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.article-content .excel-preview {
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.article-content .pdf-preview {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-content .mce-content-body {
+    outline: none;
+}
+
+/* Code highlighting styles */
+.article-content .language-javascript,
+.article-content .language-python,
+.article-content .language-css,
+.article-content .language-html {
+    color: #f8f8f2;
+}
+
+.article-content .token.keyword {
+    color: #ff79c6;
+}
+
+.article-content .token.function {
+    color: #50fa7b;
+}
+
+.article-content .token.string {
+    color: #f1fa8c;
+}
+
+.article-content .token.number {
+    color: #bd93f9;
+}
+
+.article-content .token.comment {
+    color: #6272a4;
+}
+/* TinyMCE Editor Styles */
+.tox-tinymce {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 0.375rem !important;
+}
+
+.tox .tox-statusbar {
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+html.dark .tox-tinymce {
+    background-color: #1e1e1e !important;
+    border-color: #404040 !important;
+}
+
+html.dark .tox .tox-toolbar,
+html.dark .tox .tox-toolbar__primary {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+html.dark .tox-edit-area__iframe {
+    background-color: #262626 !important;
+    color: #e0e0e0 !important;
+}
+
+html.dark .mce-content-body {
+    background-color: #262626 !important;
+    color: #e0e0e0 !important;
+}
+
+
+
+
+
+.excel-container {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.excel-toolbar {
+    padding: 0.5rem;
+    background-color: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.excel-save {
+    padding: 0.25rem 0.75rem;
+    background-color: #4299e1;
+    color: white;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.excel-filename {
+    color: #4a5568;
+    font-size: 0.875rem;
+}
+
+
+
+.excel-table td:focus {
+    outline: 2px solid #4299e1;
+    outline-offset: -2px;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Replace with your navbar's actual height */
+    background: #ffffff; /* Example background color */
+    z-index: 10;
+}
+
+
+
+
+/* Flash Info Banner - Enhanced Version */
+#flashInfoBanner {
+    position: fixed;
+    z-index: 25;
+    top: 55px;
+    left: 0;
+    right: 0;
+    height: 43px;
+    background: #f4ebeb;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flash-first-article {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: rgb(254 202 202);
+    animation: fadeOutImproved 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.flash-first-article > .flash-article {
+    animation: vibratingPopup 3s ease-out;
+}
+
+/* Enhanced fade out with smoother transition */
+@keyframes fadeOutImproved {
+    0% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+    80% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-20px) scale(0.95); 
+    }
+}
+
+/* Vibrating/shaking popup effect */
+@keyframes vibratingPopup {
+    0% { 
+        transform: scale(0.8) translateX(0); 
+        opacity: 0; 
+    }
+    10% { 
+        transform: scale(1.1) translateX(-2px); 
+        opacity: 1; 
+    }
+    15% { 
+        transform: scale(1.05) translateX(2px); 
+        opacity: 1; 
+    }
+    20% { 
+        transform: scale(1.08) translateX(-1px); 
+        opacity: 1; 
+    }
+    25% { 
+        transform: scale(1.03) translateX(1px); 
+        opacity: 1; 
+    }
+    30% { 
+        transform: scale(1.05) translateX(-1px); 
+        opacity: 1; 
+    }
+    35% { 
+        transform: scale(1.02) translateX(0); 
+        opacity: 1; 
+    }
+    85% { 
+        transform: scale(1) translateX(0); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: scale(1) translateX(0); 
+        opacity: 1; 
+    }
+}
+
+.flash-scroll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+
+    
+}
+@keyframes containerLoop {
+    0% { /* Do nothing - let individual slides handle their timing */ }
+    100% { /* Reset for next loop */ }
+}
+/* Enhanced slide animation with smoother transitions */
+.flash-article-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation-name: smoothSlideVertical;
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    
+}
+
+/* Improved vertical sliding with better easing */
+@keyframes smoothSlideVertical {
+    0% {
+        transform: translateY(100%) scale(0.9);
+        opacity: 0;
+    }
+    5% {
+        transform: translateY(20%) scale(0.95);
+        opacity: 0.3;
+    }
+    12% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    88% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    95% {
+        transform: translateY(-20%) scale(0.95);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100%) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Enhanced text styling with better positioning */
+.flash-article {
+    color: #FF2400;
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0 2rem;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    /* Better vertical centering */
+    line-height: 1.2;
+    margin-top: 2px; /* Slightly lower positioning */
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced hover effects */
+.flash-article:hover {
+    color: #094acc;
+    transform: scale(1.05) translateY(-1px);
+    text-shadow: 0 2px 4px rgba(9, 74, 204, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Pause animation on banner hover */
+#flashInfoBanner:hover .flash-article-slide {
+    animation-play-state: paused;
+}
+
+/* Enhanced single article animation */
+.flash-scroll-container.single-article .flash-article-slide {
+    animation: enhancedSingleSlide 30s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes enhancedSingleSlide {
+    0% {
+        transform: translateY(80%) scale(0.95);
+        opacity: 0;
+    }
+    3% {
+        transform: translateY(10%) scale(0.98);
+        opacity: 0.5;
+    }
+    8% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    85% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    92% {
+        transform: translateY(-10%) scale(0.98);
+        opacity: 0.5;
+    }
+    97% {
+        transform: translateY(-80%) scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-80%) scale(0.95);
+        opacity: 0;
+    }
+}
+
+/* Additional enhancement: Subtle glow effect for better visibility */
+#flashInfoBanner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(255, 36, 0, 0.05) 0%, 
+        rgba(255, 36, 0, 0.02) 50%, 
+        rgba(255, 36, 0, 0.05) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure articles appear above the glow */
+.flash-article-slide,
+.flash-first-article {
+    z-index: 1;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .flash-article {
+        font-size: 1rem;
+        padding: 0 1rem;
+        max-width: 95%;
+    }
+    
+    #flashInfoBanner {
+        height: 40px;
+    }
+}
+
+/* Enhanced loading state */
+.flash-scroll-container:empty::after {
+    content: 'Loading...';
+    color: #FF2400;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+
+
+
+/* // links  */
+/* Attractive Quick Links Title Styling */
+#linksSection h1.text-3xl {
+    text-align: center;
+    width: 100%;
+    /* font-family: "Playfair Display", serif; */
+    font-family: 'Consolas', 'Monaco', monospace;
+    /* font-family: "Ga Maamli", sans-serif; */
+    font-size: 1.5 rem;
+    font-weight: 900;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+/* Decorative underline effect */
+#linksSection h1.text-3xl::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(37, 99, 235, 0.1) 0%,
+        rgba(37, 99, 235, 0.7) 50%,
+        rgba(37, 99, 235, 0.1) 100%
+    );
+    border-radius: 2px;
+}
+
+/* Subtle hover animation */
+#linksSection h1.text-3xl::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg,
+        rgba(59, 130, 246, 0.2) 0%,
+        rgba(59, 130, 246, 0.8) 50%,
+        rgba(59, 130, 246, 0.2) 100%
+    );
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+#linksSection h1.text-3xl:hover::before {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Subtle text shadow for depth */
+#linksSection h1.text-3xl {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Container styling */
+#linksSection .flex.justify-between.items-center.mb-8 {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Add Link button styling */
+#linksSection #addLinkBtn {
+    width: 150px;
+    font-size: 1 rem;
+    font-weight: 700;
+    align-self: flex-end;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#linksSection #addLinkBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1),
+                0 4px 6px -1px rgba(0, 0, 0, 0.06);
+}
+/* bookmarksSection */
+#bookmarksSection {
+    margin-left: 0.5rem; /* Match the width of the sidebar */
+    padding-top: 5rem;
+    position: fixed;
+}
+
+
+/* Bookmark Button Animation */
+.bookmark-btn {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+.bookmark-btn:active {
+    transform: scale(0.9);
+}
+
+.bookmark-icon {
+    width: 100%;
+    height: 100%;
+    stroke: #4a5568;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+.bookmark-btn.bookmarked .bookmark-icon {
+    fill: #f6ad55;
+    stroke: #f6ad55;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.bookmark-sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, rgba(246,173,85,1) 0%, rgba(246,173,85,0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.bookmark-btn.bookmarked .bookmark-sparkle {
+    animation: sparkle 0.6s ease-out;
+}
+
+
+/* Phone Directory hover card adjustments */
+#directoryList .relative:hover {
+    z-index: 20; /* Ensure hover card appears above other items */
+}
+
+
+
+/* Phone Directory hover card adjustments */
+.contact-details {
+    
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.contact-details.opacity-100 {
+    opacity: 1;
+}
+
+.contact-entry:hover .details-indicator {
+    color: #EAB308; /* yellow-500 */
+}
+
+/* Prevent layout shift during hover */
+.contact-entry {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-entry:hover {
+    z-index: 2;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Adjust hover card position when near right edge */
+@media (max-width: 1400px) {
+    #directoryList .relative:last-child .contact-details,
+    #directoryList .relative:nth-last-child(2) .contact-details {
+        left: auto;
+        right: 100%;
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+}
+
+.scrollbar-thin {
+    scrollbar-width: thin;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}

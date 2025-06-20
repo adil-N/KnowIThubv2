@@ -1,0 +1,57 @@
+# Server Configuration
+PORT=3000
+NODE_ENV=production
+MONGODB_URI=mongodb://administrateur:Administrateur*1987@127.0.0.1:27017/internalcms?authSource=admin
+
+# JWT Configuration
+JWT_SECRET=1987_addiiillll@2024
+
+# Security Configuration
+SECURITY_AUTHORIZATION=enabled
+# File Upload Configuration
+MAX_FILE_SIZE=5242880
+UPLOAD_PATH=uploads
+
+
+# Organization Configuration  
+# ORGANIZATION_DOMAIN=ddf.ae
+
+# File Upload Configuration
+MAX_FILE_SIZE=5242880
+UPLOAD_PATH=uploads
+
+# ==================================================
+# REMOVE THESE AFTER FIRST RUN FOR SECURITY
+# ==================================================
+# Initial Admin Configuration (REMOVE AFTER FIRST RUN)
+# SUPER_ADMIN_EMAIL=
+# SUPER_ADMIN_PASSWORD=
+# ADMIN_EMAIL=
+# ADMIN_PASSWORD=
+# ADMIN_PASSWORD=
+# TEST_USER_EMAIL=
+# TEST_USER_PASSWORD=
+# DEFAULT_INVITE_CODE=
+
+
+
+
+# Current development settings
+#NODE_ENV=development
+
+# For future production use (commented out for now)
+# NODE_ENV=production
+# ALLOWED_ORIGINS=https://your-domain.com,https://admin.your-domain.com
+# MongoDB Configuration
+
+
+# Admin Configuration
+# SUPER_ADMIN_EMAIL=SuperAdmin@ddf.ae
+# SUPER_ADMIN_PASSWORD=SuperAdmin@2024$$
+
+# Default Admin (IT Department Admin)
+# DEFAULT_ADMIN_EMAIL=it.admin@ddf.ae
+# DEFAULT_ADMIN_PASSWORD=ITAdmin@2024$$
+
+# /INVITE_CODE=SPECIALINVITE2024
+

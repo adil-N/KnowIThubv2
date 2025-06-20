@@ -1,0 +1,82 @@
+/* frontend/css/components/like-button.css */
+@keyframes like-button-burst {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.4);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) rotate(360deg);
+    }
+}
+
+.like-button {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.like-button svg {
+    transition: all 0.3s ease;
+}
+
+.like-button.liked svg {
+    fill: #2563eb;
+    stroke: #2563eb;
+}
+
+.like-button.liked {
+    color: #2563eb;
+}
+
+.like-button.animating svg {
+    animation: like-button-burst 0.6s ease forwards;
+}
+
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+}
+
+.sparkle-1 { top: -8px; left: -8px; }
+.sparkle-2 { top: -8px; right: -8px; }
+.sparkle-3 { bottom: -8px; left: -8px; }
+.sparkle-4 { bottom: -8px; right: -8px; }
+
+.like-button.animating .sparkle {
+    animation: sparkle 0.6s ease forwards;
+}
+
+/* Hover effect */
+.like-button:not(.liked):hover svg {
+    transform: scale(1.1);
+    stroke: #2563eb;
+}
+
+.like-count {
+    transition: color 0.3s ease;
+}
+
+.like-button.liked .like-count {
+    color: #2563eb;
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Know IT HUB | Dubai Duty Free</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+        .logo-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gray-900">Know IT HUB</h1>
+                    <span class="ml-2 text-sm text-gray-500">About</span>
+                </div>
+                <button onclick="window.close()" class="px-4 py-2 text-gray-600 hover:text-gray-900 transition duration-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 px-4 mt-16">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="floating-icon mb-8">
+                <div class="inline-block p-4 bg-white/20 rounded-full backdrop-blur-sm">
+                    <span class="material-icons text-6xl">hub</span>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+                Know IT <span class="text-yellow-300">HUB</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
+                Centralized Knowledge Management System for Dubai Duty Free Systems & IT Department
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <span class="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm">Knowledge Base</span>
+                <span class="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm">Code Repository</span>
+                <span class="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm">Team Collaboration</span>
+                <span class="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm">Secure Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">About Know IT HUB</h2>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Know IT HUB is a comprehensive knowledge management platform specifically designed for the Systems & IT Department at Dubai Duty Free. Our platform serves as the central repository for technical documentation, code snippets, procedures, and team resources.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Built to streamline information sharing and improve operational efficiency, Know IT HUB empowers our IT professionals with instant access to critical knowledge and resources.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="logo-animation">
+                            <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span class="material-icons text-blue-600 text-3xl">business</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Dubai Duty Free</h3>
+                            <p class="text-gray-600">Systems & IT Department</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+                        <span class="material-icons text-blue-600 text-3xl mb-3 block">security</span>
+                        <h4 class="font-semibold text-gray-900 mb-2">Secure</h4>
+                        <p class="text-gray-600 text-sm">Role-based access control</p>
+                    </div>
+                    <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
+                        <span class="material-icons text-green-600 text-3xl mb-3 block">speed</span>
+                        <h4 class="font-semibold text-gray-900 mb-2">Fast</h4>
+                        <p class="text-gray-600 text-sm">Quick search and access</p>
+                    </div>
+                    <div class="feature-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
+                        <span class="material-icons text-purple-600 text-3xl mb-3 block">group</span>
+                        <h4 class="font-semibold text-gray-900 mb-2">Collaborative</h4>
+                        <p class="text-gray-600 text-sm">Team-focused features</p>
+                    </div>
+                    <div class="feature-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
+                        <span class="material-icons text-orange-600 text-3xl mb-3 block">devices</span>
+                        <h4 class="font-semibold text-gray-900 mb-2">Responsive</h4>
+                        <p class="text-gray-600 text-sm">Works on all devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Platform Features</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Everything you need to manage, organize, and share knowledge effectively within your IT department
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Knowledge Base -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-blue-600 text-2xl">article</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Knowledge Base</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Create and manage technical documentation with rich text editing, file attachments, categorization, and advanced search capabilities.
+                    </p>
+                </div>
+
+                <!-- Code Snippets -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-green-600 text-2xl">code</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Code Repository</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Store and share code snippets with syntax highlighting, language categorization, and easy copy-to-clipboard functionality.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-purple-600 text-2xl">link</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Resource Links</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Organize important links and external resources with categories, descriptions, and quick access for your team.
+                    </p>
+                </div>
+
+                <!-- Team Directory -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-orange-600 text-2xl">contacts</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Team Directory</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Comprehensive directory of team contacts with roles, departments, phone numbers, and contact information.
+                    </p>
+                </div>
+
+                <!-- Bookmarks -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-red-600 text-2xl">bookmark</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Smart Bookmarks</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Save and organize your favorite articles and resources for quick access and personal reference.
+                    </p>
+                </div>
+
+                <!-- Admin Panel -->
+                <div class="feature-card bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-icons text-indigo-600 text-2xl">admin_panel_settings</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Administration</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Comprehensive admin tools for user management, content moderation, system monitoring, and access control.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Technical Specifications</h2>
+                <p class="text-lg text-gray-600">Built with modern web technologies for performance and reliability</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <span class="material-icons text-4xl text-blue-600 mb-3 block">language</span>
+                    <h4 class="font-semibold text-gray-900 mb-2">Frontend</h4>
+                    <p class="text-gray-600 text-sm">Vanilla JavaScript, HTML5, CSS3, Tailwind CSS</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <span class="material-icons text-4xl text-green-600 mb-3 block">dns</span>
+                    <h4 class="font-semibold text-gray-900 mb-2">Backend</h4>
+                    <p class="text-gray-600 text-sm">Node.js, Express.js, RESTful APIs</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <span class="material-icons text-4xl text-purple-600 mb-3 block">storage</span>
+                    <h4 class="font-semibold text-gray-900 mb-2">Database</h4>
+                    <p class="text-gray-600 text-sm">MongoDB with Mongoose ODM</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <span class="material-icons text-4xl text-orange-600 mb-3 block">shield</span>
+                    <h4 class="font-semibold text-gray-900 mb-2">Security</h4>
+                    <p class="text-gray-600 text-sm">JWT Authentication, Role-based Access</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold mb-2">Know IT HUB</h3>
+                <p class="text-gray-400">Dubai Duty Free - Systems & IT Department</p>
+            </div>
+            <div class="border-t border-gray-700 pt-6">
+                <p class="text-gray-400 text-sm">
+                    © 2025 Dubai Duty Free. All rights reserved. | Internal use only.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add some interactive effects to feature cards
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

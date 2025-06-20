@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know IT HUB</title>
+     <!-- Multiple favicon declarations for better browser support -->
+     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xIC0xIDM0IDM0Ij48c3R5bGU+QGtleWZyYW1lcyByb3RhdGV7ZnJvbXt0cmFuc2Zvcm06cm90YXRlKDBkZWcpfXRve3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKX19QGtleWZyYW1lcyBwdWxzZXswJXtzdHJva2Utd2lkdGg6MX01MCV7c3Ryb2tlLXdpZHRoOjJ9MTAwJXtzdHJva2Utd2lkdGg6MX19LmRpYW1vbmR7ZmlsbDpibGFjaztzdHJva2U6YmxhY2s7YW5pbWF0aW9uOnJvdGF0ZSAzcyBsaW5lYXIgaW5maW5pdGU7dHJhbnNmb3JtLW9yaWdpbjpjZW50ZXJ9PC9zdHlsZT48cGF0aCBjbGFzcz0iZGlhbW9uZCIgZD0iTTE2IDAgTDMyIDE2IEwxNiAzMiBMMCAxNiBaIi8+PC9zdmc+">
+    <!-- <script type="module" src="js/animatedFavicon.js"></script> -->
+
+    <!-- Add Tailwind CSS  -->
+
+    <script src="/vendor/tailwind.min.js"></script>
+    <link href="/vendor/material-icons.css" rel="stylesheet">
+    <script src="/vendor/chart.min.js"></script>
+
+
+    <link rel="stylesheet" href="/css/components/like-button.css">
+    <!-- tiny mce -->
+    <script src="/vendor/tinymce.min.js"></script>
+
+
+   <script src="/vendor/lodash.min.js"></script>
+<script src="/vendor/xlsx.full.min.js"></script>
+<script src="/vendor/prism.min.js"></script>
+<script src="/vendor/prism-sql.min.js"></script>
+<link href="/vendor/prism-tomorrow.min.css" rel="stylesheet">
+
+<script src="/vendor/Sortable.min.js"></script>
+
+
+
+
+<!-- <script type="module" src="/src/js/darkMode.js"></script> -->
+<script type="module" src="/frontend/src/js/darkMode.js"></script>
+
+
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/input.css">
+</head>
+<body class="bg-gray-100">
+     <!-- Add this new sidebar container -->
+     <div id="sidebarContainer" class="fixed inset-y-0 left-0 z-30"></div>
+   <!-- Navigation -->
+   <nav class="bg-white shadow-lg fixed top-0 left-0 right-0 z-40">
+    <div class="px-4">
+        <div class="flex justify-between items-center h-16">
+                <!-- Left side navigation -->
+                <div class="flex items-center space-x-2">
+                    <a href="#home" id="homeLogoLink" class="flex items-center justify-center -ml-7">
+                        <video 
+                            class="navbar-logo w-32 h-14 object-scale-down cursor-pointer" 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline
+                            disablePictureInPicture
+                            controlslist="nodownload noplaybackrate"
+                        >
+                            <source src="/uploads/videos/IT SUPPORT LOGO.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                
+                    <a href="#home" id="homeLink" class="px-4 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            <span class="text-s">Home</span>
+                        </span>
+                    </a>
+                    <a href="#login" id="loginLink" class="px-3 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            <span class="text-s">Login</span>
+                        </span>
+                    </a>
+                    <a href="#register" id="registerLink" class="px-3 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                            <span class="text-s">Register</span>
+                        </span>
+                    </a>
+                    <a href="#create-article" id="createArticleLink" class="px-2 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200 hidden">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                            <span class="text-s">Create Article</span>
+                        </span>
+                    </a>
+                    <a href="#links" id="linksLink" class="px-3 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200 hidden">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                            </svg>
+                            <span class="text-s">Links</span>
+                        </span>
+                    </a>
+                    <a href="#code-snippets" id="codeSnippetsLink" class="px-3 py-1.5 text-sm rounded-lg bg-white text-gray-800 hover:bg-gray-100 transition duration-300 font-medium shadow-sm border border-gray-200 hidden">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                            <span class="text-s">Code Snippets</span>
+                        </span>
+                    </a>
+                 </div>
+
+
+        
+ <!-- Search Bar -->
+<div id="searchBar" class="hidden auth-required flex-1 max-w-md mx-4 flex items-center">
+    <div class="relative w-full">
+        <form id="searchForm" class="relative">
+            <input
+                type="text"
+                id="searchInput"
+                class="w-full h-9 pl-10 pr-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                placeholder="Search articles or use #tag..."
+                autocomplete="off"
+            >
+            <button type="submit" class="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+            <button type="button" id="clearSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 hidden">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
+
+
+                <!-- Right side navigation -->
+<div class="flex items-center space-x-2">
+    <span id="userInfo" class="hidden px-2 py-1.5 text-sm bg-gray-100 rounded-lg text-gray-800 font-medium"></span>
+    <a href="#admin" id="adminLink" class="px-3 py-1.5 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 font-medium shadow-sm hidden">
+        <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span class="text-s">Admin Panel</span>
+        </span>
+    </a>
+    <a href="#admin" id="superAdminLink" class="px-3 py-1.5 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 font-medium shadow-sm hidden">
+        <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <span class="text-s">Super Admin</span>
+        </span>
+    </a>
+    <a href="#logout" id="logoutLink" class="px-3 py-1.5 text-sm rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition duration-300 font-medium shadow-sm hidden">
+        <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+            <span class="text-s">Logout</span>
+        </span>
+    </a>
+ </div>
+            </div>
+        </div>
+    </nav>
+<!-- Navbar -->
+<div class="navbar">
+    <!-- Your navbar content -->
+</div>
+
+<!-- Add this near other section divs in index.html -->
+<div id="bookmarksSection" class="hidden relative w-full">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-4">My Bookmarks</h1>
+        <div id="noBookmarksMessage" class="hidden text-center text-gray-500">
+            You have no bookmarked articles.
+        </div>
+        <div id="bookmarksContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Bookmarks will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+
+
+<div id="flashInfoBanner" class="hidden" style="display: none;">
+    <!-- First Article (Popup Effect) -->
+    <div class="flash-first-article">
+        <a class="flash-article" href="#">News & Important Update!</a>
+    </div>
+    
+    <!-- Scrolling Articles -->
+    <div class="flash-scroll-container">
+        <a class="flash-article" href="#">Update 1</a>
+        <a class="flash-article" href="#">Update 2</a>
+        <a class="flash-article" href="#">Update 3</a>
+        <a class="flash-article" href="#">Update 4</a>
+    </div>
+</div>
+
+
+    <!-- Main Content -->
+    <main class="transition-all duration-300 px-4 py-8 mt-16 relative" role="main">
+
+        <!-- Login Form -->
+        <div id="loginForm" class="hidden max-w-md mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Login</h2>
+                <form id="loginFormElement">
+                    <div class="mb-4">
+                        <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="loginEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="loginPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div id="loginError" class="text-red-600 mb-4 hidden"></div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" class="hidden max-w-md mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Register</h2>
+                <form id="registerFormElement">
+                    <div class="mb-4">
+                        <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="firstName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input type="text" id="lastName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="registerEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="registerEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="registerPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="registerPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <p class="text-sm text-gray-500 mt-1">Password must be at least 8 characters and include numbers and letters</p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="inviteCode" class="block text-sm font-medium text-gray-700">Invite Code</label>
+                        <input type="text" id="inviteCode" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div id="registerError" class="text-red-600 mb-4 hidden"></div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Password Reset Form -->
+  <!-- Replace the existing forcedPasswordChangeForm section with this: -->
+<div id="forcedPasswordChangeForm" class="hidden">
+    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Change Your Temporary Password
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Please set a new password to continue
+            </p>
+        </div>
+        
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <form id="forcedPasswordChangeFormElement" class="space-y-6">
+                    <div>
+                        <label for="tempPassword" class="block text-sm font-medium text-gray-700">
+                            Current Temporary Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="tempPassword" name="tempPassword" type="password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="newPassword" class="block text-sm font-medium text-gray-700">
+                            New Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="newPassword" name="newPassword" type="password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Password must be at least 8 characters and include numbers and letters</p>
+                    </div>
+
+                    <div>
+                        <label for="confirmNewPassword" class="block text-sm font-medium text-gray-700">
+                            Confirm New Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="confirmNewPassword" name="confirmNewPassword" type="password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div id="forcedPasswordError" class="text-red-500 text-sm mt-1 hidden"></div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="createArticleForm" class="hidden">
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-6">Create New Article</h2>
+                    <div id="createArticleError" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    </div>
+                    <div id="createArticleFormContainer">
+                        <!-- Form will be rendered here by articleCreate.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Links Section -->
+<div id="linksSection" class="hidden relative w-full">
+    <div class="container mx-auto px-4 py-8">
+        <div id="linksPageContent" class="transition-all duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Important Links</h1>
+                <button id="addLinkBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Add Link
+                </button>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div id="categoryTabs" class="flex flex-wrap gap-2 mb-6">
+                <!-- Categories will be inserted here -->
+            </div>
+            
+            <!-- Links Container -->
+            <div id="linksContainer" class="space-y-4">
+                <!-- Links will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal remains the same -->
+    <div id="addLinkModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <!-- Modal content remains the same -->
+    </div>
+</div>
+        <!-- Article List Container with Filter Info -->
+        <div class="space-y-4">
+            <!-- Filter Information Banner -->
+            <div id="filterInfo" class="hidden mx-auto max-w-7xl px-4"></div>
+
+
+            <!-- apex section -->
+
+            <div id="apexSection" class="hidden relative w-full pl-4 pr-4">
+                <div class="py-8">
+                  <div class="flex justify-between items-center mb-6">
+                    <span class="font-semibold">Oracle APEX</span>
+                  </div>
+                  <div class="bg-white rounded-lg shadow-md p-8 flex flex-col items-center space-y-6">
+                    <p>Click below to launch Oracle APEX Application</p>
+                    <button id="openApexBtn" 
+                            class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+                      Open Oracle APEX
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+
+
+            <!--  code before the Article List Container div -->
+     <!-- Code Snippets Section -->
+<div id="codeSnippetsSection" class="hidden relative w-full pl-4">
+    <div class="container mx-auto py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <span class="font-semibold">Code Snippets</span>
+            <button id="addSnippetBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 flex items-center">
+                <span class="material-icons-outlined mr-2">add</span>
+                Add Snippet
+            </button>
+        </div>
+
+        <!-- Two-column layout -->
+        <div class="flex gap-6">
+            <!-- Snippets List Sidebar -->
+            <div class="w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <div class="mb-4">
+                        <input type="text" 
+                               id="snippetSearch" 
+                               placeholder="Search snippets..." 
+                               class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div id="snippetsList" class="space-y-2 max-h-[calc(100vh-250px)] overflow-y-auto">
+                        <!-- Snippets list will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-1">
+                <div id="selectedSnippetContainer" class="bg-white rounded-lg shadow-md">
+                    <!-- Selected snippet will be displayed here -->
+                    <div class="p-8 text-center text-gray-500">
+                        Select a snippet to view its contents
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Snippet Modal (remains the same) -->
+    <div id="addSnippetModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <!-- Modal content remains unchanged -->
+    </div>
+</div>
+            <!-- Article List -->
+            <div id="articleList" class="hidden"></div>
+        </div>
+        <!-- Article Details -->
+        <div id="articleDetails" class="hidden"></div>
+
+        <!-- Edit Article Form -->
+        <div id="editArticleForm" class="container mx-auto px-4 py-8 hidden"></div>
+
+        <!-- Admin Panel Container -->
+        <div id="adminPanelContainer" class="hidden"></div>
+
+        <div id="superAdminPanel" class="hidden">
+            <div class="container mx-auto px-4 py-8">
+                <div id="superAdminContent" class="space-y-6">
+                    <!-- Super admin content will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile Section -->
+        <div id="userProfileSection" class="hidden"></div>
+        <!-- Phone Directory Sections -->
+<div id="phoneDirectorySection" class="hidden"></div>
+<div id="phoneDirectoryCreateForm" class="hidden"></div>
+<div id="phoneDirectoryEditForm" class="hidden"></div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- Loading Spinner -->
+   <div id="loadingSpinner" class="hidden">
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-white"></div>
+    </div>
+</div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/js/admin/systemBackup.js"></script>
+    <script type="module" src="/js/app.js"></script>
+
+
+    <footer class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-gray-800/90 text-white px-4 py-1 rounded-t-lg backdrop-blur-sm z-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
+    <span class="text-xs text-gray-300">
+        Dubai Duty Free - Systems & IT | 
+        <a href="about.html" target="_blank" class="text-white hover:text-gray-300 underline">About</a>
+    </span>
+</footer>
+</body>
+</html>
