@@ -1,6 +1,6 @@
 // jobs/tagUpdateJob.js - Updated version
 const Article = require('../models/Article');
-const TagProcessor = require('../utils/tagProcessor');
+const TagProcessor = require('../utils/TagProcessor');
 
 class TagUpdateJob {
     constructor() {
