@@ -15,7 +15,7 @@ const fs = require('fs');
 const mime = require('mime-types');
 const { startCleanupJob } = require('./jobs/articleCleanupJob');
 const fileCleanupService = require('./jobs/fileCleanupJob');
-const tagUpdateJob = require('./jobs/TagUpdateJob');
+const tagUpdateJob = require('./jobs/tagUpdateJob');
 const backupRoutes = require('./routes/backupRoutes');
 const backupService = require('./services/backupService');
 const backupJob = require('./jobs/backupJob');
@@ -312,6 +312,100 @@ app.post('/api/auth/refresh-token', auth, async (req, res) => {
     }
 });
 
+// Make sure this is in your server.js
+app.post('/api/batch/execute/mercury', auth, async (req, res) => {
+    try {
+        const { exec } = require('child_process');
+        
+        // Check if user has admin permissions
+        if (!['admin', 'super'].includes(req.user.role)) {
+            return res.status(403).json({
+                success: false,
+                message: 'Admin permissions required to execute batch files'
+            });
+        }
+
+        const batchPath = 'C:\\CMS\\internal-cms-v2.0-Local version-with env\\bach\\run_Merc.bat';
+        
+        console.log(`Executing Mercury batch file: ${batchPath} by user: ${req.user.email}`);
+        
+        exec(`"${batchPath}"`, { timeout: 60000 }, (error, stdout, stderr) => {
+            if (error) {
+                console.error('Mercury batch execution error:', error);
+                return res.status(500).json({
+                    success: false,
+                    message: `Mercury execution failed: ${error.message}`
+                });
+            }
+            
+            console.log('Mercury batch execution completed successfully');
+            res.json({
+                success: true,
+                message: 'Mercury batch file executed successfully',
+                data: {
+                    output: stdout || 'Mercury execution completed',
+                    errors: stderr || null,
+                    executedBy: req.user.email,
+                    executedAt: new Date()
+                }
+            });
+        });
+        
+    } catch (error) {
+        console.error('Mercury batch route error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error while executing Mercury'
+        });
+    }
+});
+// Add this batch execution route in server.js after your existing routes
+app.post('/api/batch/execute/pofm', auth, async (req, res) => {
+    try {
+        const { exec } = require('child_process');
+        
+        // Check if user has admin permissions
+        if (!['admin', 'super'].includes(req.user.role)) {
+            return res.status(403).json({
+                success: false,
+                message: 'Admin permissions required to execute batch files'
+            });
+        }
+
+        const batchPath = 'C:\\CMS\\internal-cms-v2.0-Local version-with env\\bach\\run_word.bat';
+        
+        console.log(`Executing POFM batch file: ${batchPath} by user: ${req.user.email}`);
+        
+        exec(`"${batchPath}"`, { timeout: 60000 }, (error, stdout, stderr) => {
+            if (error) {
+                console.error('POFM batch execution error:', error);
+                return res.status(500).json({
+                    success: false,
+                    message: `POFM execution failed: ${error.message}`
+                });
+            }
+            
+            console.log('POFM batch execution completed successfully');
+            res.json({
+                success: true,
+                message: 'POFM batch file executed successfully',
+                data: {
+                    output: stdout || 'POFM execution completed',
+                    errors: stderr || null,
+                    executedBy: req.user.email,
+                    executedAt: new Date()
+                }
+            });
+        });
+        
+    } catch (error) {
+        console.error('POFM batch route error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error while executing POFM'
+        });
+    }
+});
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({
