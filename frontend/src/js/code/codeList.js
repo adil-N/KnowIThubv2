@@ -99,16 +99,23 @@ export const codeList = {
 
         // Clear any existing content
         container.innerHTML = `
-            <div class="container mx-auto py-8">
-                <!-- Header -->
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl font-bold">{Code Snippets}</h1>
-                    <button id="addSnippetBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 flex items-center">
-                        <span class="material-icons-outlined mr-2">add</span>
-                        Add Snippet
-                    </button>
-                </div>
-
+         
+        <div class="bg-gray-900 rounded-xl shadow-2xl border border-gray-700 p-6 mb-8">
+        <!-- Centered Header -->
+        <div class="text-center mb-4">
+            <h1 class="text-3xl font-bold text-white">❮Code Snippets❯</h1>
+            <p class="text-gray-300 mt-2">Manage and execute your SQL code snippets</p>
+        </div>
+        
+        <!-- Button Row -->
+        <div class="flex justify-end">
+            <button id="addSnippetBtn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 flex items-center shadow-lg hover:shadow-xl">
+                <span class="material-icons-outlined mr-2">add</span>
+                Add Snippet
+            </button>
+        </div>
+    </div>
+    
                 <!-- Two-column layout -->
                 <div class="flex gap-6">
                     <!-- Snippets List Sidebar -->
@@ -179,15 +186,16 @@ if (copyBtn) {
 }
 
 
-            // Edit button handler
-            // const editBtn = e.target.closest('.edit-btn');
-            // if (editBtn) {
-            //     const snippetId = editBtn.dataset.snippetId;
-            //     if (snippetId) {
-            //         window.location.hash = `#edit-snippet/${snippetId}`;
-            //     }
-            // }
-
+           // Execute POFM button handler
+            const executePofmBtn = e.target.closest('.execute-pofm-btn');
+            if (executePofmBtn) {
+                this.executePOFM();
+            }
+// Execute Mercury button handler
+const executeMercuryBtn = e.target.closest('.execute-mercury-btn');
+if (executeMercuryBtn) {
+    this.executeMercury();
+}
             // Delete button handler
             const deleteBtn = e.target.closest('.delete-btn');
             if (deleteBtn) {
@@ -642,34 +650,32 @@ showSnippet(snippet) {
             </div>
 
          
-        <!-- Second control copy under textarea -->
-        <div class="flex justify-center items-center space-x-2 mb-4">
-        <div class="snippet-actions flex items-center space-x-2 mb-4"  >
-            <button class="copy-btn flex items-center px-3 py-1.5 rounded bg-gray-50 text-gray-600 hover:bg-gray-100"
-                    title="Copy Code">
-                <span class="material-icons-outlined text-lg mr-1">content_copy</span>
-                Copy
-            </button>
-           
-            <button class="delete-btn flex items-center px-3 py-1.5 rounded bg-red-50 text-red-600 hover:bg-red-100"
-                    data-snippet-id="${snippet.snippetId}" title="Delete Snippet">
-                <span class="material-icons-outlined text-lg mr-1">delete</span>
-                Delete
-            </button>
-            </div>
-        </div>
-           <!-- Tags -->
-            <div class="mb-4">
-                <h3 class="text-md font-semibold mb-3 border-b pb-2">Tags</h3>
-                <div class="flex flex-wrap gap-2">
-                    ${(snippet.tags && snippet.tags.length > 0) ? snippet.tags.map(tag => `
-                        <span class="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full">
-                            ${this.escapeHtml(tag)}
-                        </span>
-                    `).join('') : '<span class="text-sm text-gray-500">No tags</span>'}
-                </div>
-            </div>
+           <!-- Second control copy under textarea -->
+        <div class="flex justify-center items-center mb-6">
+    <div class="snippet-actions flex items-center gap-3 p-4 bg-gray-50 rounded-xl shadow-sm border border-gray-200">
         
+        <!-- Copy Updated Code Button -->
+        <button class="copy-btn group flex items-center px-4 py-2.5 rounded-lg bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-300 hover:border-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
+                title="Copy Updated SQL Code with Applied Parameters">
+            <span class="material-icons-outlined text-lg mr-2 group-hover:scale-110 transition-transform duration-200">integration_instructions</span>
+            <span class="font-medium">Copy SQL Code</span>
+        </button>
+        
+        <!-- Execute POFM Button - Dark Oracle Theme -->
+        <button class="execute-pofm-btn group flex items-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black border border-gray-900 hover:border-black transition-all duration-200 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Execute POFM Oracle Database Query">
+            <span class="material-icons-outlined text-lg mr-2 group-hover:scale-110 transition-transform duration-200">dns</span>
+            <span class="font-medium">Execute POFM</span>
+        </button>
+        
+        <!-- Execute Mercury Button - Dark Oracle Theme -->
+        <button class="execute-mercury-btn group flex items-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black border border-gray-900 hover:border-black transition-all duration-200 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Execute Mercury Oracle Database Query">
+            <span class="material-icons-outlined text-lg mr-2 group-hover:scale-110 transition-transform duration-200">dns</span>
+            <span class="font-medium">Execute Mercury</span>
+        </button>
+    </div>
+</div>
             
     `;
     
@@ -928,7 +934,118 @@ applySimpleSyntaxHighlighting(textarea) {
                 </div>`;
         }
     },
+// Methods to execute the POFM  and MERC batch file
+async executePOFM() {
+    try {
+        // Show confirmation dialog
+        if (!confirm('Are you sure you want to execute the POFM batch file?')) {
+            return;
+        }
 
+        const executePofmBtn = document.querySelector('.execute-pofm-btn');
+        const originalContent = executePofmBtn?.innerHTML;
+        
+        // Show loading state
+        if (executePofmBtn) {
+            executePofmBtn.disabled = true;
+            executePofmBtn.innerHTML = `
+                <span class="material-icons-outlined text-lg mr-1 animate-spin">refresh</span>
+                Executing...
+            `;
+        }
+
+        ui.showLoading('Executing POFM batch file...');
+
+        const response = await api.post('/api/batch/execute/pofm', {});
+
+        if (response.success) {
+            ui.showSuccess('POFM batch file executed successfully!');
+            console.log('POFM Execution Output:', response.data.output);
+            
+            // Optionally show output in a modal or alert
+            if (response.data.output && response.data.output.trim()) {
+                setTimeout(() => {
+                    alert(`POFM Execution Output:\n\n${response.data.output}`);
+                }, 1000);
+            }
+        } else {
+            ui.showError(response.message || 'Failed to execute POFM batch file');
+        }
+
+    } catch (error) {
+        console.error('Error executing POFM batch file:', error);
+        ui.showError('Error executing POFM batch file');
+    } finally {
+        ui.hideLoading();
+        
+        // Restore button state
+        const executePofmBtn = document.querySelector('.execute-pofm-btn');
+        if (executePofmBtn) {
+            executePofmBtn.disabled = false;
+            executePofmBtn.innerHTML = `
+                <span class="material-icons-outlined text-lg mr-1">play_arrow</span>
+                Execute POFM
+            `;
+        }
+    }
+},
+
+
+async executeMercury() {
+    try {
+        // Show confirmation dialog
+        if (!confirm('Are you sure you want to execute the Mercury batch file?')) {
+            return;
+        }
+
+        const executeMercuryBtn = document.querySelector('.execute-mercury-btn');
+        const originalContent = executeMercuryBtn?.innerHTML;
+        
+        // Show loading state
+        if (executeMercuryBtn) {
+            executeMercuryBtn.disabled = true;
+            executeMercuryBtn.innerHTML = `
+                <span class="material-icons-outlined text-lg mr-1 animate-spin">refresh</span>
+                Executing...
+            `;
+        }
+
+        ui.showLoading('Executing Mercury batch file...');
+
+        const response = await api.post('/api/batch/execute/mercury', {});
+
+        if (response.success) {
+            ui.showSuccess('Mercury batch file executed successfully!');
+            console.log('Mercury Execution Output:', response.data.output);
+            
+            // Optionally show output in a modal or alert
+            if (response.data.output && response.data.output.trim()) {
+                setTimeout(() => {
+                    alert(`Mercury Execution Output:\n\n${response.data.output}`);
+                }, 1000);
+            }
+        } else {
+            ui.showError(response.message || 'Failed to execute Mercury batch file');
+        }
+
+    } catch (error) {
+        console.error('Error executing Mercury batch file:', error);
+        ui.showError('Error executing Mercury batch file');
+    } finally {
+        ui.hideLoading();
+        
+        // Restore button state
+        const executeMercuryBtn = document.querySelector('.execute-mercury-btn');
+        if (executeMercuryBtn) {
+            executeMercuryBtn.disabled = false;
+            executeMercuryBtn.innerHTML = `
+                <span class="material-icons-outlined text-lg mr-1">rocket_launch</span>
+                Execute Mercury
+            `;
+        }
+    }
+},
+// end of executeMercury method
     cleanup() {
         const codeEditor = document.getElementById('snippetCodeEditor');
         if (codeEditor && typeof codeEditor.cleanupLineNumbers === 'function') {
