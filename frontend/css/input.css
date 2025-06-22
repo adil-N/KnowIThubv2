@@ -88,13 +88,18 @@
 /* Add these to your input.css file */
 html.dark {
     color-scheme: dark;
-}
-
-/* Base dark mode styles */
-html.dark {
-    background-color: #121212;
+    background: linear-gradient(-45deg, #f7f7f8, #1f2a48, #2e2d4d, #1a1a2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
     color: #e0e0e0;
 }
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 
 /* Navigation and header elements */
 html.dark nav,
