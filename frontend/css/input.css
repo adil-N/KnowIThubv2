@@ -86,21 +86,21 @@
 
 
 /* Add these to your input.css file */
-html.dark body {
-  margin: 0;
-  min-height: 100vh;
+html.dark .animated-gradient-nav {
   background: linear-gradient(-45deg, #823eff, #1f2a48, #2e2d4d, #cc9cf3);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  animation: gradientNavFlow 15s ease infinite;
   color: white;
-  font-family: sans-serif;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
-@keyframes gradientBG {
+@keyframes gradientNavFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 
 /* Navigation and header elements */
 html.dark nav.animated-gradient-nav {
