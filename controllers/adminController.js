@@ -349,7 +349,7 @@ const adminController = {
                         })
                         .select('email firstName lastName lastLogin')
                         .sort({ lastLogin: -1 })
-                        .limit(10)
+                        .limit(50)
                         .lean();
 
                         recentLogins.forEach(user => {
