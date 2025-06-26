@@ -115,12 +115,12 @@ export const statsManagement = {
 
                 <!-- Main Content Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Top 5 Most Active Users -->
+                    <!-- Top 10 Most Active Users -->
                     <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                         <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-4">
                             <h3 class="text-xl font-bold text-white flex items-center">
                                 <span class="material-icons-outlined mr-2">leaderboard</span>
-                                Top 5 Active Users (${safeStats.mostActiveUsers.length})
+                                Top 10 Active Users (${safeStats.mostActiveUsers.length})
                             </h3>
                             <p class="text-emerald-100 text-sm">Most engaged IT Staff members</p>
                         </div>
