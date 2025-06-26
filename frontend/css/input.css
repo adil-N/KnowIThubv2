@@ -86,34 +86,27 @@
 
 
 /* Add these to your input.css file */
-html.dark .animated-gradient-nav {
+html.dark body {
+  margin: 0;
+  min-height: 100vh;
   background: linear-gradient(-45deg, #823eff, #1f2a48, #2e2d4d, #cc9cf3);
   background-size: 400% 400%;
-  animation: gradientNavFlow 15s ease infinite;
+  animation: gradientBG 15s ease infinite;
   color: white;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  font-family: sans-serif;
 }
 
-@keyframes gradientNavFlow {
+@keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 
 /* Navigation and header elements */
-html.dark nav.animated-gradient-nav {
-  background: linear-gradient(-45deg, #823eff, #4b1d6f, #2e2d4d, #572783);
-  background-size: 400% 400%;
-  animation: gradientNavFlow 12s ease infinite;
-  color: white; /* optional, ensures nav text is readable */
-}
-
-@keyframes gradientNavFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+html.dark nav,
+html.dark .bg-white {
+    background-color: #000000 !important;
+    color: #e0e0e0;
 }
 
 /* html.dark button:not(.btn-primary):not(.btn-danger):not(.view-btn):not(.edit-btn):not(.delete-btn),
