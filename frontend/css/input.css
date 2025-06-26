@@ -417,8 +417,11 @@ html.dark .bg-white.rounded-lg.shadow-sm {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
 }
 
-
-/* Any other containers that need to be targeted */
+html.dark .my-container {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
+}
 
 
 /* Article Details Container Styling in Dark Mode */
@@ -427,16 +430,13 @@ html.dark .bg-white.rounded-lg.shadow-sm {
     border: 1px solid #404040 !important;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
 }
-html.dark .my-container,
-html.dark .article-card,
-html.dark .bg-white,
-html.dark .bg-gray-100,
-html.dark .rounded-lg {
-    background-color: transparent !important;
-  backdrop-filter: blur(6px);
 
+/* Any other containers that need to be targeted */
+html.dark .my-container {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #404040 !important;
 }
-
 
 
 /* Specific borders for different section types */
