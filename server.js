@@ -360,26 +360,28 @@ app.post('/api/batch/execute/mercury', auth, async (req, res) => {
     }
 });
 // Fixed POFM download route with correct path
+// Updated POFM launcher route - accessible to all authenticated users
 app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
     try {
         const path = require('path');
         const fs = require('fs');
         
-        if (!['admin', 'super'].includes(req.user.role)) {
-            return res.status(403).json({
-                success: false,
-                message: 'Admin permissions required'
-            });
-        }
+        // Remove admin restriction - all authenticated users can access
+        // if (!['admin', 'super'].includes(req.user.role)) {
+        //     return res.status(403).json({
+        //         success: false,
+        //         message: 'Admin permissions required'
+        //     });
+        // }
 
-        // Use the exact path structure from your directory listing
+        // Path to POFM launcher batch file
         const batFilePath = path.join(__dirname, 'bach', 'POFM_Launcher.bat');
         
         console.log('Looking for POFM file at:', batFilePath);
         console.log('File exists:', fs.existsSync(batFilePath));
         
         if (!fs.existsSync(batFilePath)) {
-            console.log('File not found. Current directory:', process.cwd());
+            console.log('POFM file not found. Current directory:', process.cwd());
             console.log('__dirname:', __dirname);
             
             return res.status(404).json({
@@ -388,7 +390,7 @@ app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
             });
         }
 
-        console.log(`POFM launcher downloaded by user: ${req.user.email}`);
+        console.log(`POFM launcher downloaded by user: ${req.user.email} (${req.user.role})`);
 
         // Set proper headers for Windows batch file
         res.setHeader('Content-Disposition', 'attachment; filename="POFM_Launcher.bat"');
@@ -398,7 +400,7 @@ app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
         
         // Send the file using absolute path
         const absolutePath = path.resolve(batFilePath);
-        console.log('Sending file from absolute path:', absolutePath);
+        console.log('Sending POFM file from absolute path:', absolutePath);
         
         res.sendFile(absolutePath);
 
@@ -407,6 +409,60 @@ app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error downloading POFM launcher',
+            error: error.message
+        });
+    }
+});
+
+// Updated Mercury launcher route - accessible to all authenticated users
+app.get('/api/batch/download/mercury-file', auth, async (req, res) => {
+    try {
+        const path = require('path');
+        const fs = require('fs');
+        
+        // Remove admin restriction - all authenticated users can access
+        // if (!['admin', 'super'].includes(req.user.role)) {
+        //     return res.status(403).json({
+        //         success: false,
+        //         message: 'Admin permissions required'
+        //     });
+        // }
+
+        // Path to Mercury launcher batch file
+        const batFilePath = path.join(__dirname, 'bach', 'Mercury_Launcher.bat');
+        
+        console.log('Looking for Mercury file at:', batFilePath);
+        console.log('File exists:', fs.existsSync(batFilePath));
+        
+        if (!fs.existsSync(batFilePath)) {
+            console.log('Mercury file not found. Current directory:', process.cwd());
+            console.log('__dirname:', __dirname);
+            
+            return res.status(404).json({
+                success: false,
+                message: `Mercury_Launcher.bat not found at: ${batFilePath}`
+            });
+        }
+
+        console.log(`Mercury launcher downloaded by user: ${req.user.email} (${req.user.role})`);
+
+        // Set proper headers for Windows batch file
+        res.setHeader('Content-Disposition', 'attachment; filename="Mercury_Launcher.bat"');
+        res.setHeader('Content-Type', 'application/x-bat');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Pragma', 'no-cache');
+        
+        // Send the file using absolute path
+        const absolutePath = path.resolve(batFilePath);
+        console.log('Sending Mercury file from absolute path:', absolutePath);
+        
+        res.sendFile(absolutePath);
+
+    } catch (error) {
+        console.error('Mercury launcher download error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error downloading Mercury launcher',
             error: error.message
         });
     }
