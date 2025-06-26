@@ -1053,54 +1053,61 @@ showSimplePofmInstructions() {
 
 async executeMercury() {
     try {
-        // Show confirmation dialog
-        if (!confirm('Are you sure you want to execute the Mercury batch file?')) {
+        if (!confirm('Download Mercury launcher?')) {
             return;
         }
 
         const executeMercuryBtn = document.querySelector('.execute-mercury-btn');
-        const originalContent = executeMercuryBtn?.innerHTML;
         
-        // Show loading state
         if (executeMercuryBtn) {
             executeMercuryBtn.disabled = true;
             executeMercuryBtn.innerHTML = `
-                <span class="material-icons-outlined text-lg mr-1 animate-spin">refresh</span>
-                Executing...
+                <span class="material-icons-outlined text-lg mr-2 animate-spin">download</span>
+                Downloading...
             `;
         }
 
-        ui.showLoading('Executing Mercury batch file...');
-
-        const response = await api.post('/api/batch/execute/mercury', {});
-
-        if (response.success) {
-            ui.showSuccess('Mercury batch file executed successfully!');
-            console.log('Mercury Execution Output:', response.data.output);
-            
-            // Optionally show output in a modal or alert
-            if (response.data.output && response.data.output.trim()) {
-                setTimeout(() => {
-                    alert(`Mercury Execution Output:\n\n${response.data.output}`);
-                }, 1000);
+        // Download the Mercury launcher
+        const token = localStorage.getItem('token');
+        const downloadUrl = `/api/batch/download/mercury-file`;
+        
+        const response = await fetch(downloadUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
+        });
+        
+        if (response.ok) {
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Mercury_Launcher.bat';
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            
+            this.showSimpleMercuryInstructions();
+            
         } else {
-            ui.showError(response.message || 'Failed to execute Mercury batch file');
+            throw new Error('Download failed');
         }
 
     } catch (error) {
-        console.error('Error executing Mercury batch file:', error);
-        ui.showError('Error executing Mercury batch file');
+        console.error('Error downloading Mercury launcher:', error);
+        ui.showError('Error downloading Mercury launcher');
     } finally {
-        ui.hideLoading();
-        
-        // Restore button state
         const executeMercuryBtn = document.querySelector('.execute-mercury-btn');
         if (executeMercuryBtn) {
             executeMercuryBtn.disabled = false;
             executeMercuryBtn.innerHTML = `
-                <span class="material-icons-outlined text-lg mr-1">rocket_launch</span>
-                Execute Mercury
+                <span class="material-icons-outlined text-lg mr-2">launch</span>
+                Launch Mercury
             `;
         }
     }
