@@ -329,7 +329,7 @@ app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
         // }
 
         // Path to POFM launcher batch file
-        const batFilePath = path.join(__dirname, 'bach', 'POFM_Launcher.bat');
+        const batFilePath = path.join(__dirname, 'batch', 'POFM_Launcher.bat');
         
         console.log('Looking for POFM file at:', batFilePath);
         console.log('File exists:', fs.existsSync(batFilePath));
@@ -383,7 +383,7 @@ app.get('/api/batch/download/mercury-file', auth, async (req, res) => {
         // }
 
         // Path to Mercury launcher batch file
-        const batFilePath = path.join(__dirname, 'bach', 'Mercury_Launcher.bat');
+        const batFilePath = path.join(__dirname, 'batch', 'Mercury_Launcher.bat');
         
         console.log('Looking for Mercury file at:', batFilePath);
         console.log('File exists:', fs.existsSync(batFilePath));
