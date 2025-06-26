@@ -2059,10 +2059,10 @@ html.dark .mce-content-body {
 #flashInfoBanner {
     position: fixed;
     z-index: 25;
-    top: 63px;
+    top: 60px;
     left: 0;
     right: 0;
-    height: 43px;
+    height: 39px;
     background: #f4ebeb;
     border: 1px solid transparent;
     display: flex;
