@@ -934,62 +934,122 @@ applySimpleSyntaxHighlighting(textarea) {
                 </div>`;
         }
     },
-// Methods to execute the POFM  and MERC batch file
+// Simple executePOFM method
 async executePOFM() {
     try {
-        // Show confirmation dialog
-        if (!confirm('Are you sure you want to execute the POFM batch file?')) {
+        if (!confirm('Download POFM launcher?')) {
             return;
         }
 
         const executePofmBtn = document.querySelector('.execute-pofm-btn');
-        const originalContent = executePofmBtn?.innerHTML;
         
-        // Show loading state
         if (executePofmBtn) {
             executePofmBtn.disabled = true;
             executePofmBtn.innerHTML = `
-                <span class="material-icons-outlined text-lg mr-1 animate-spin">refresh</span>
-                Executing...
+                <span class="material-icons-outlined text-lg mr-2 animate-spin">download</span>
+                Downloading...
             `;
         }
 
-        ui.showLoading('Executing POFM batch file...');
-
-        const response = await api.post('/api/batch/execute/pofm', {});
-
-        if (response.success) {
-            ui.showSuccess('POFM batch file executed successfully!');
-            console.log('POFM Execution Output:', response.data.output);
-            
-            // Optionally show output in a modal or alert
-            if (response.data.output && response.data.output.trim()) {
-                setTimeout(() => {
-                    alert(`POFM Execution Output:\n\n${response.data.output}`);
-                }, 1000);
+        // Download the POFM launcher
+        const token = localStorage.getItem('token');
+        const downloadUrl = `/api/batch/download/pofm-file`;
+        
+        const response = await fetch(downloadUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
+        });
+        
+        if (response.ok) {
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'POFM_Launcher.bat';
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            
+            // Show simple success message
+            this.showSimplePofmInstructions();
+            
         } else {
-            ui.showError(response.message || 'Failed to execute POFM batch file');
+            throw new Error('Download failed');
         }
 
     } catch (error) {
-        console.error('Error executing POFM batch file:', error);
-        ui.showError('Error executing POFM batch file');
+        console.error('Error downloading POFM launcher:', error);
+        ui.showError('Error downloading POFM launcher');
     } finally {
-        ui.hideLoading();
-        
-        // Restore button state
         const executePofmBtn = document.querySelector('.execute-pofm-btn');
         if (executePofmBtn) {
             executePofmBtn.disabled = false;
             executePofmBtn.innerHTML = `
-                <span class="material-icons-outlined text-lg mr-1">play_arrow</span>
-                Execute POFM
+                <span class="material-icons-outlined text-lg mr-2">download</span>
+                Download POFM
             `;
         }
     }
 },
 
+// Simple instructions popup
+showSimplePofmInstructions() {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <div class="flex items-center mb-4">
+                <span class="material-icons-outlined text-green-600 text-2xl mr-3">check_circle</span>
+                <h3 class="text-lg font-semibold">POFM Launcher Downloaded!</h3>
+            </div>
+            
+            <div class="mb-6 text-sm text-gray-700">
+                <strong>How to use:</strong><br><br>
+                1. Find <code>POFM_Launcher.bat</code> in your Downloads folder<br>
+                2. Double-click the file to run it<br>
+                3. If Windows shows a security warning, click "Run anyway"<br>
+                4. The application will launch automatically<br><br>
+                
+                <strong>Tip:</strong> You can move this file to your Desktop for easy access.
+            </div>
+            
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                <div class="flex items-start">
+                    <span class="material-icons-outlined text-amber-600 text-lg mr-2">info</span>
+                    <div class="text-sm text-amber-800">
+                        <strong>Security Note:</strong> Windows may show a warning when running batch files. 
+                        This is normal - just click "Run anyway" to proceed.
+                    </div>
+                </div>
+            </div>
+            
+            <button id="closePofmInstructions" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Got it!
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Handle close
+    const closeBtn = modal.querySelector('#closePofmInstructions');
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+},
 
 async executeMercury() {
     try {
