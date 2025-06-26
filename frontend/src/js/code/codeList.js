@@ -665,14 +665,14 @@ showSnippet(snippet) {
         <button class="execute-pofm-btn group flex items-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black border border-gray-900 hover:border-black transition-all duration-200 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5"
                 title="Execute POFM Oracle Database Query">
             <span class="material-icons-outlined text-lg mr-2 group-hover:scale-110 transition-transform duration-200">dns</span>
-            <span class="font-medium">Execute POFM</span>
+            <span class="font-medium">Run POFM Query</span>
         </button>
         
         <!-- Execute Mercury Button - Dark Oracle Theme -->
         <button class="execute-mercury-btn group flex items-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black border border-gray-900 hover:border-black transition-all duration-200 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5"
                 title="Execute Mercury Oracle Database Query">
             <span class="material-icons-outlined text-lg mr-2 group-hover:scale-110 transition-transform duration-200">dns</span>
-            <span class="font-medium">Execute Mercury</span>
+            <span class="font-medium">Run Mercury Query</span>
         </button>
     </div>
 </div>
@@ -993,7 +993,7 @@ async executePOFM() {
             executePofmBtn.disabled = false;
             executePofmBtn.innerHTML = `
                 <span class="material-icons-outlined text-lg mr-2">download</span>
-                Launch POFM Query 
+                Run POFM Query
             `;
         }
     }
@@ -1167,7 +1167,7 @@ async executeMercury() {
             executeMercuryBtn.disabled = false;
             executeMercuryBtn.innerHTML = `
                 <span class="material-icons-outlined text-lg mr-2">launch</span>
-                Launch Mercury
+                Run Mercury Query
             `;
         }
     }
