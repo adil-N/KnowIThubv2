@@ -993,7 +993,7 @@ async executePOFM() {
             executePofmBtn.disabled = false;
             executePofmBtn.innerHTML = `
                 <span class="material-icons-outlined text-lg mr-2">download</span>
-                Download POFM
+                Launch POFM Query 
             `;
         }
     }
