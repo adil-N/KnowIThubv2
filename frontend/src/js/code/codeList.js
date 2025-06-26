@@ -151,61 +151,61 @@ export const codeList = {
         this.initialized = true;
 
     },
-
-    setupEventListeners() {
-        // Add snippet button
-        const addBtn = document.getElementById('addSnippetBtn');
-        if (addBtn) {
-            addBtn.addEventListener('click', () => {
-                window.location.hash = '#create-snippet';
-            });
-        }
-
-        // Search functionality
-        const searchInput = document.getElementById('snippetSearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
-        }
-
-        // Global click handlers for actions
-        document.addEventListener('click', (e) => {
-            // Copy button handler
-            const copyBtn = e.target.closest('.copy-btn');
-if (copyBtn) {
-    const editor = document.getElementById('snippetCodeEditor');
-    const currentCode = editor?.value || '';
-    navigator.clipboard.writeText(currentCode).then(() => {
-        ui.showSuccess('Code copied to clipboard!');
-        const icon = copyBtn.querySelector('.material-icons-outlined');
-        if (icon) {
-            const originalText = icon.textContent;
-            icon.textContent = 'check';
-            setTimeout(() => { icon.textContent = originalText; }, 2000);
-        }
-    }).catch(() => ui.showError('Failed to copy code'));
-}
-
-
-           // Execute POFM button handler
-            const executePofmBtn = e.target.closest('.execute-pofm-btn');
-            if (executePofmBtn) {
-                this.executePOFM();
-            }
-// Execute Mercury button handler
-const executeMercuryBtn = e.target.closest('.execute-mercury-btn');
-if (executeMercuryBtn) {
-    this.executeMercury();
-}
-            // Delete button handler
-            const deleteBtn = e.target.closest('.delete-btn');
-            if (deleteBtn) {
-                const snippetId = deleteBtn.dataset.snippetId;
-                if (snippetId && confirm('Are you sure you want to delete this snippet?')) {
-                    this.deleteSnippet(snippetId);
-                }
-            }
+setupEventListeners() {
+    // Add snippet button
+    const addBtn = document.getElementById('addSnippetBtn');
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            window.location.hash = '#create-snippet';
         });
-    },
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('snippetSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
+    }
+
+    // Global click handlers for actions
+    document.addEventListener('click', (e) => {
+        // Copy button handler
+        const copyBtn = e.target.closest('.copy-btn');
+        if (copyBtn) {
+            const editor = document.getElementById('snippetCodeEditor');
+            const currentCode = editor?.value || '';
+            navigator.clipboard.writeText(currentCode).then(() => {
+                ui.showSuccess('Code copied to clipboard!');
+                const icon = copyBtn.querySelector('.material-icons-outlined');
+                if (icon) {
+                    const originalText = icon.textContent;
+                    icon.textContent = 'check';
+                    setTimeout(() => { icon.textContent = originalText; }, 2000);
+                }
+            }).catch(() => ui.showError('Failed to copy code'));
+        }
+
+        // Execute POFM button handler
+        const executePofmBtn = e.target.closest('.execute-pofm-btn');
+        if (executePofmBtn) {
+            this.executePOFM();
+        }
+
+        // Execute Mercury button handler
+        const executeMercuryBtn = e.target.closest('.execute-mercury-btn');
+        if (executeMercuryBtn) {
+            this.executeMercury();
+        }
+
+        // Delete button handler
+        const deleteBtn = e.target.closest('.delete-btn');
+        if (deleteBtn) {
+            const snippetId = deleteBtn.dataset.snippetId;
+            if (snippetId && confirm('Are you sure you want to delete this snippet?')) {
+                this.deleteSnippet(snippetId);
+            }
+        }
+    });
+},
 // Enhanced parameter update handler
 setupParameterEventListeners() {
     const pm = document.getElementById('parameterManagement');
