@@ -435,7 +435,7 @@ export const statsManagement = {
 
         return `
             <div class="space-y-3 max-h-96 overflow-y-auto">
-                ${activities.slice(0, 20).map(activity => {
+                ${activities.slice(0, 50).map(activity => {
                     // Ensure activity object has required properties
                     const safeActivity = {
                         user: {
