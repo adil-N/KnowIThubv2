@@ -359,50 +359,55 @@ app.post('/api/batch/execute/mercury', auth, async (req, res) => {
         });
     }
 });
-// Add this batch execution route in server.js after your existing routes
-app.post('/api/batch/execute/pofm', auth, async (req, res) => {
+// Fixed POFM download route with correct path
+app.get('/api/batch/download/pofm-file', auth, async (req, res) => {
     try {
-        const { exec } = require('child_process');
+        const path = require('path');
+        const fs = require('fs');
         
-        // Check if user has admin permissions
         if (!['admin', 'super'].includes(req.user.role)) {
             return res.status(403).json({
                 success: false,
-                message: 'Admin permissions required to execute batch files'
+                message: 'Admin permissions required'
             });
         }
 
-        const batchPath = 'C:\\CMS\\internal-cms-v2.0-Local version-with env\\bach\\run_word.bat';
+        // Use the exact path structure from your directory listing
+        const batFilePath = path.join(__dirname, 'bach', 'POFM_Launcher.bat');
         
-        console.log(`Executing POFM batch file: ${batchPath} by user: ${req.user.email}`);
+        console.log('Looking for POFM file at:', batFilePath);
+        console.log('File exists:', fs.existsSync(batFilePath));
         
-        exec(`"${batchPath}"`, { timeout: 60000 }, (error, stdout, stderr) => {
-            if (error) {
-                console.error('POFM batch execution error:', error);
-                return res.status(500).json({
-                    success: false,
-                    message: `POFM execution failed: ${error.message}`
-                });
-            }
+        if (!fs.existsSync(batFilePath)) {
+            console.log('File not found. Current directory:', process.cwd());
+            console.log('__dirname:', __dirname);
             
-            console.log('POFM batch execution completed successfully');
-            res.json({
-                success: true,
-                message: 'POFM batch file executed successfully',
-                data: {
-                    output: stdout || 'POFM execution completed',
-                    errors: stderr || null,
-                    executedBy: req.user.email,
-                    executedAt: new Date()
-                }
+            return res.status(404).json({
+                success: false,
+                message: `POFM_Launcher.bat not found at: ${batFilePath}`
             });
-        });
+        }
+
+        console.log(`POFM launcher downloaded by user: ${req.user.email}`);
+
+        // Set proper headers for Windows batch file
+        res.setHeader('Content-Disposition', 'attachment; filename="POFM_Launcher.bat"');
+        res.setHeader('Content-Type', 'application/x-bat');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Pragma', 'no-cache');
         
+        // Send the file using absolute path
+        const absolutePath = path.resolve(batFilePath);
+        console.log('Sending file from absolute path:', absolutePath);
+        
+        res.sendFile(absolutePath);
+
     } catch (error) {
-        console.error('POFM batch route error:', error);
+        console.error('POFM launcher download error:', error);
         res.status(500).json({
             success: false,
-            message: 'Internal server error while executing POFM'
+            message: 'Error downloading POFM launcher',
+            error: error.message
         });
     }
 });
