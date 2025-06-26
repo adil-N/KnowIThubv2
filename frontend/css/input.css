@@ -86,20 +86,14 @@
 
 
 /* Add these to your input.css file */
-html.dark body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(-45deg, #823eff, #1f2a48, #2e2d4d, #cc9cf3);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color: white;
-  font-family: sans-serif;
+html.dark {
+    color-scheme: dark;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Base dark mode styles */
+html.dark {
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
 /* Navigation and header elements */
@@ -305,7 +299,47 @@ html.dark .bg-gray-100.text-gray-700 {
 
 
 
+/* Dark mode specific styles with higher specificity */
+html.dark #flashInfoBanner,
+html.dark #flashInfoBanner.bg-white,
+html.dark #flashInfoBanner[class*="bg-"] {
+    background-color: #171616 !important;
+    border-color: #404040 !important;
+    color: #FF2400 !important;
+}
 
+/* First article container in dark mode */
+html.dark .flash-first-article {
+    background-color: rgba(31, 31, 31, 0.95) !important;
+}
+
+html.dark .flash-article,
+html.dark a.flash-article {
+    color: #FF2400 !important; /* Keep red color */
+    font-weight: 700;
+}
+
+html.dark .flash-article:hover,
+html.dark a.flash-article:hover {
+    color: #f06292 !important; /* Lighter red on hover */
+}
+
+/* Override any other link colors specifically for flash banner */
+html.dark #flashInfoBanner .flash-article,
+html.dark #flashInfoBanner a.flash-article {
+    color: #FF2400 !important;
+}
+
+html.dark #flashInfoBanner .flash-article:hover,
+html.dark #flashInfoBanner a.flash-article:hover {
+    color: #F2EA02 !important;
+    font-size: 1.2rem;
+}
+
+/* Scroll container in dark mode */
+html.dark .flash-scroll-container {
+    background-color: transparent !important;
+}
 /* Links and Navigation Dark Mode NAVBAR and SIDEBAR TEXT */
 html.dark a:not(.btn-primary):not(.btn-danger) {
     color: #c5c5c5 !important;
@@ -1040,7 +1074,7 @@ body {
 /* Modern Section Tooltip Styles */
 .section-tooltip {
     position: absolute;
-    background: linear-gradient(135deg, #7e7e7e 0%, #bebdbd 100%);
+    background: linear-gradient(135deg, #667eea 0%, #171618 100%);
     color: white;
     text-align: left;
     text-decoration: none;
@@ -1048,7 +1082,7 @@ body {
     font-size: 0.875rem;
     font-weight: 500;
     padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
     z-index: 9999;
     pointer-events: none;
@@ -1614,11 +1648,6 @@ body {
     transition: margin-left 0.3s ease;
     pointer-events: auto;
 }
-/* When sidebar is collapsed (add this class when sidebar closes) */
-.sidebar-collapsed .flash-article {
-    margin-left: 20px; /* Reset to normal margin */
-    max-width: calc(100% - 60px); /* Full width minus small margins */
-}
 /* Ensure proper stacking context */
 .grid {
     position: relative;
@@ -2026,9 +2055,7 @@ html.dark .mce-content-body {
 
 
 
-
-
-/* Flash Info Banner - Complete Solution (All Features Working) */
+/* Flash Info Banner - Enhanced Version */
 #flashInfoBanner {
     position: fixed;
     z-index: 25;
@@ -2036,12 +2063,12 @@ html.dark .mce-content-body {
     left: 0;
     right: 0;
     height: 43px;
-    background: linear-gradient(135deg, #f4ebeb 0%, #ffffff 100%);
+    background: #f4ebeb;
     border: 1px solid transparent;
     display: flex;
     align-items: center;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .flash-first-article {
@@ -2054,7 +2081,7 @@ html.dark .mce-content-body {
     align-items: center;
     justify-content: center;
     z-index: 2;
-    background: linear-gradient(135deg, rgb(254 202 202) 0%, rgb(239, 198, 198) 100%);
+    background-color: rgb(254 202 202);
     animation: fadeOutImproved 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
@@ -2078,7 +2105,7 @@ html.dark .mce-content-body {
     }
 }
 
-/* RESTORED: Vibrating/shaking popup effect */
+/* Vibrating/shaking popup effect */
 @keyframes vibratingPopup {
     0% { 
         transform: scale(0.8) translateX(0); 
@@ -2129,24 +2156,14 @@ html.dark .mce-content-body {
     justify-content: center;
     z-index: 1;
     overflow: hidden;
-}
 
-/* SOLUTION: Single container animation that cycles through all articles */
-.flash-scroll-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    overflow: hidden;
-    animation: masterCycle var(--total-duration) linear infinite;
+    
 }
-
-/* Each article appears for exactly its allocated time slot */
+@keyframes containerLoop {
+    0% { /* Do nothing - let individual slides handle their timing */ }
+    100% { /* Reset for next loop */ }
+}
+/* Enhanced slide animation with smoother transitions */
 .flash-article-slide {
     position: absolute;
     top: 0;
@@ -2157,60 +2174,49 @@ html.dark .mce-content-body {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    animation: none;
+    animation-name: smoothSlideVertical;
+    animation-duration: 10s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: auto !important;
     cursor: pointer !important;
+    
 }
 
-/* Master cycle that controls when each article is visible */
-@keyframes masterCycle {
-    /* This will be dynamically calculated in JavaScript */
-}
-
-/* Smooth transitions for when articles become visible */
-.flash-article-slide.active {
-    animation: smoothFadeInOut 6s ease-in-out;
-}
-
-@keyframes smoothFadeInOut {
+/* Improved vertical sliding with better easing */
+@keyframes smoothSlideVertical {
     0% {
-        transform: translateY(80%) scale(0.95);
+        transform: translateY(100%) scale(0.9);
         opacity: 0;
     }
-    15% {
-        transform: translateY(10%) scale(0.98);
-        opacity: 0.5;
+    5% {
+        transform: translateY(20%) scale(0.95);
+        opacity: 0.3;
     }
-    25% {
+    12% {
         transform: translateY(0) scale(1);
         opacity: 1;
     }
-    75% {
+    88% {
         transform: translateY(0) scale(1);
         opacity: 1;
     }
-    85% {
-        transform: translateY(-10%) scale(0.98);
-        opacity: 0.5;
+    95% {
+        transform: translateY(-20%) scale(0.95);
+        opacity: 0.3;
     }
     100% {
-        transform: translateY(-80%) scale(0.95);
+        transform: translateY(-100%) scale(0.9);
         opacity: 0;
     }
 }
 
-/* Enhanced text styling with modern gradient text */
+/* Enhanced text styling with better positioning */
 .flash-article {
-    background: linear-gradient(135deg, #FF2400 0%, #e73c7e 50%, #FF5C00 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* font-family: "Poppins", serif; */
-    /* font-family: "Playfair Display", serif; */
-    font-family: 'Consolas', 'Monaco', monospace;
-    font-weight: 900;
-    font-size: 1.35rem;
+    color: #FF2400;
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-size: 1.25rem;
     padding: 0 2rem;
     text-decoration: none;
     text-align: center;
@@ -2218,33 +2224,19 @@ html.dark .mce-content-body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 220px; /* Add space for sidebar */
-    margin-right: 20px; /* Balance on right side */
-    /* max-width: calc(100% - 260px); Adjust max width to account for margins */
-    max-width: min(calc(100% - 260px), 1200px);
+    max-width: 90%;
+    /* Better vertical centering */
     line-height: 1.2;
-    margin-top: 10px;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    animation: gradientShift 3s ease-in-out infinite;
+    margin-top: 2px; /* Slightly lower positioning */
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Gradient animation for text */
-@keyframes gradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-/* Enhanced hover effects with modern transforms */
+/* Enhanced hover effects */
 .flash-article:hover {
-    transform: scale(1.08) translateY(-2px);
-    filter: drop-shadow(0 4px 8px rgba(255, 36, 0, 0.3)) brightness(1.1);
-    background-size: 300% 300%;
-    animation-duration: 1s;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #094acc;
+    transform: scale(1.05) translateY(-1px);
+    text-shadow: 0 2px 4px rgba(9, 74, 204, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Pause animation on banner hover */
@@ -2254,33 +2246,41 @@ html.dark .mce-content-body {
 
 /* Enhanced single article animation */
 .flash-scroll-container.single-article .flash-article-slide {
-    animation: singleArticlePulse 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    animation: enhancedSingleSlide 30s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-@keyframes singleArticlePulse {
+@keyframes enhancedSingleSlide {
     0% {
-        transform: translateY(0) scale(0.95);
-        opacity: 0.8;
-        filter: blur(1px);
+        transform: translateY(80%) scale(0.95);
+        opacity: 0;
     }
-    25% {
+    3% {
+        transform: translateY(10%) scale(0.98);
+        opacity: 0.5;
+    }
+    8% {
         transform: translateY(0) scale(1);
         opacity: 1;
-        filter: blur(0px);
     }
-    75% {
+    85% {
         transform: translateY(0) scale(1);
         opacity: 1;
-        filter: blur(0px);
+    }
+    92% {
+        transform: translateY(-10%) scale(0.98);
+        opacity: 0.5;
+    }
+    97% {
+        transform: translateY(-80%) scale(0.95);
+        opacity: 0;
     }
     100% {
-        transform: translateY(0) scale(0.95);
-        opacity: 0.8;
-        filter: blur(1px);
+        transform: translateY(-80%) scale(0.95);
+        opacity: 0;
     }
 }
 
-/* Modern glow effect with animated background */
+/* Additional enhancement: Subtle glow effect for better visibility */
 #flashInfoBanner::before {
     content: '';
     position: absolute;
@@ -2289,22 +2289,11 @@ html.dark .mce-content-body {
     right: 0;
     bottom: 0;
     background: linear-gradient(90deg, 
-        rgba(255, 36, 0, 0.08) 0%, 
-        rgba(231, 60, 126, 0.05) 50%, 
-        rgba(35, 166, 213, 0.08) 100%);
-    background-size: 200% 200%;
-    animation: glowShift 4s ease-in-out infinite;
+        rgba(255, 36, 0, 0.05) 0%, 
+        rgba(255, 36, 0, 0.02) 50%, 
+        rgba(255, 36, 0, 0.05) 100%);
     pointer-events: none;
     z-index: 0;
-}
-
-@keyframes glowShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
 }
 
 /* Ensure articles appear above the glow */
@@ -2325,145 +2314,110 @@ html.dark .mce-content-body {
         height: 40px;
     }
 }
-/* Large monitors - adjust spacing but keep left margin */
-@media (min-width: 1921px) {
-    .flash-article {
-        margin-left: 220px; /* KEEP - don't use auto */
-        margin-right: auto;  /* Only right can be auto */
-        max-width: 1200px;   /* Cap the width */
-    }
-}
 
-/* Ultrawide - same principle */
-@media (min-width: 2560px) {
-    .flash-article {
-        margin-left: 220px; /* KEEP - prevents sidebar overlap */
-        margin-right: auto;
-        max-width: 1400px;
-    }
-}
-/* Enhanced loading state with modern spinner */
+/* Enhanced loading state */
 .flash-scroll-container:empty::after {
+    content: 'Loading...';
+    color: #FF2400;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+
+
+
+/* // links  */
+/* Attractive Quick Links Title Styling */
+#linksSection h1.text-3xl {
+    text-align: center;
+    width: 100%;
+    /* font-family: "Playfair Display", serif; */
+    font-family: 'Consolas', 'Monaco', monospace;
+    /* font-family: "Ga Maamli", sans-serif; */
+    font-size: 1.5 rem;
+    font-weight: 900;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+/* Decorative underline effect */
+#linksSection h1.text-3xl::after {
     content: '';
-    width: 20px;
-    height: 20px;
-    border: 2px solid #FF2400;
-    border-top: 2px solid transparent;
-    border-radius: 50%;
-    animation: modernSpin 1s linear infinite;
-}
-
-@keyframes modernSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* DARK MODE STYLES - Enhanced for new CSS structure */
-html.dark #flashInfoBanner,
-html.dark #flashInfoBanner.bg-white,
-html.dark #flashInfoBanner[class*="bg-"] {
-    background: linear-gradient(135deg, #171616 0%, #1f1f1f 100%) !important;
-    border-color: #404040 !important;
-    color: #FF2400 !important;
-}
-
-/* First article container in dark mode */
-html.dark .flash-first-article {
-    background: linear-gradient(135deg, rgba(31, 31, 31, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%) !important;
-}
-
-/* Flash article text in dark mode */
-html.dark .flash-article,
-html.dark a.flash-article {
-    background: linear-gradient(135deg, #FF2400 0%, #f06292 50%, #F2EA02 100%) !important;
-    background-size: 200% 200% !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    color: #FF5C00 !important; /* Fallback for non-supporting browsers */
-    font-weight: 700 !important;
-}
-
-html.dark .flash-article:hover,
-html.dark a.flash-article:hover {
-    background: linear-gradient(135deg, #F2EA02 0%, #ff6b9d 50%, #FF2400 100%) !important;
-    background-size: 300% 300% !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    color: #F2EA02 !important; /* Fallback */
-    transform: scale(1.08) translateY(-2px) !important;
-    filter: drop-shadow(0 4px 8px rgba(242, 234, 2, 0.3)) brightness(1.2) !important;
-}
-
-/* Override any other link colors specifically for flash banner in dark mode */
-html.dark #flashInfoBanner .flash-article,
-html.dark #flashInfoBanner a.flash-article {
-    background: linear-gradient(135deg, #FF2400 0%, #f06292 50%, #F2EA02 100%) !important;
-    background-size: 200% 200% !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    color: #FF5C00 !important;
-    text-decoration: none !important;
-}
-
-html.dark #flashInfoBanner .flash-article:hover,
-html.dark #flashInfoBanner a.flash-article:hover {
-    background: linear-gradient(135deg, #F2EA02 0%, #ff6b9d 50%, #FF2400 100%) !important;
-    background-size: 300% 300% !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    color: #F2EA02 !important;
-    font-size: 1.3rem !important;
-    transform: scale(1.1) translateY(-3px) !important;
-}
-
-/* Scroll container in dark mode */
-html.dark .flash-scroll-container {
-    background-color: transparent !important;
-}
-
-/* Dark mode glow effect */
-html.dark #flashInfoBanner::before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
     background: linear-gradient(90deg, 
-        rgba(4, 4, 4, 0.12) 0%, 
-        rgba(2, 2, 2, 0.08) 50%, 
-        rgba(3, 3, 3, 0.12) 100%) !important;
-    background-size: 200% 200% !important;
-    animation: glowShift 4s ease-in-out infinite !important;
+        rgba(37, 99, 235, 0.1) 0%,
+        rgba(37, 99, 235, 0.7) 50%,
+        rgba(37, 99, 235, 0.1) 100%
+    );
+    border-radius: 2px;
 }
 
-/* Dark mode gradient shift for text */
-html.dark .flash-article {
-    animation: darkGradientShift 3s ease-in-out infinite !important;
+/* Subtle hover animation */
+#linksSection h1.text-3xl::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg,
+        rgba(59, 130, 246, 0.2) 0%,
+        rgba(59, 130, 246, 0.8) 50%,
+        rgba(59, 130, 246, 0.2) 100%
+    );
+    border-radius: 2px;
+    transition: transform 0.3s ease;
 }
 
-@keyframes darkGradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
+#linksSection h1.text-3xl:hover::before {
+    transform: translateX(-50%) scaleX(1);
 }
 
-/* Dark mode responsive adjustments */
-@media (max-width: 768px) {
-    html.dark .flash-article {
-        font-size: 1rem !important;
-        padding: 0 1rem !important;
-        max-width: 95% !important;
-    }
-    
-    html.dark #flashInfoBanner .flash-article:hover {
-        font-size: 1.1rem !important;
-    }
+/* Subtle text shadow for depth */
+#linksSection h1.text-3xl {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
+/* Container styling */
+#linksSection .flex.justify-between.items-center.mb-8 {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
 
+/* Add Link button styling */
+#linksSection #addLinkBtn {
+    width: 150px;
+    font-size: 1 rem;
+    font-weight: 700;
+    align-self: flex-end;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
 
+#linksSection #addLinkBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1),
+                0 4px 6px -1px rgba(0, 0, 0, 0.06);
+}
 /* bookmarksSection */
 #bookmarksSection {
     margin-left: 0.5rem; /* Match the width of the sidebar */
@@ -2604,27 +2558,4 @@ html.dark .flash-article {
 
 .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb:hover {
     background: #9ca3af;
-}
-
-
-
-
-/* clickable article card */
-.article-card-clickable {
-    cursor: pointer;
-    transition: box-shadow 0.2s ease, transform 0.1s ease;
-}
-
-.article-card-clickable:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    transform: translateY(-1px);
-}
-
-.article-title-clickable {
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.article-title-clickable:hover {
-    color: #3b82f6; /* blue-500 */
 }
