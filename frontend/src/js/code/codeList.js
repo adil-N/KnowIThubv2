@@ -1051,6 +1051,66 @@ showSimplePofmInstructions() {
     });
 },
 
+
+      // Existing POFM instructions method
+    showSimplePofmInstructions() {
+        // ... existing POFM instructions code ...
+    },
+
+    // ADD THE NEW MERCURY METHOD HERE:
+    showSimpleMercuryInstructions() {
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+        modal.innerHTML = `
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+                <div class="flex items-center mb-4">
+                    <span class="material-icons-outlined text-green-600 text-2xl mr-3">check_circle</span>
+                    <h3 class="text-lg font-semibold">Mercury Launcher Downloaded!</h3>
+                </div>
+                
+                <div class="mb-6 text-sm text-gray-700">
+                    <strong>How to launch Mercury:</strong><br><br>
+                    1. Find <code>Mercury_Launcher.bat</code> in your Downloads folder<br>
+                    2. Double-click the file to run it<br>
+                    3. If Windows shows a security warning, click "Run anyway"<br>
+                    4. Mercury will launch automatically<br><br>
+                    
+                    <strong>Tip:</strong> You can move this file to your Desktop for easy access.
+                </div>
+                
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                    <div class="flex items-start">
+                        <span class="material-icons-outlined text-amber-600 text-lg mr-2">info</span>
+                        <div class="text-sm text-amber-800">
+                            <strong>Security Note:</strong> Windows may show a warning when running batch files. 
+                            This is normal - just click "Run anyway" to proceed.
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="closeMercuryInstructions" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Got it!
+                </button>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const closeBtn = modal.querySelector('#closeMercuryInstructions');
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(modal);
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+    },
+
+
+
+    
 async executeMercury() {
     try {
         if (!confirm('Download Mercury launcher?')) {
