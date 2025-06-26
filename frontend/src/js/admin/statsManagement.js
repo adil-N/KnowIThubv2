@@ -297,7 +297,7 @@ export const statsManagement = {
 
         return `
             <div class="space-y-4">
-                ${users.slice(0, 5).map((user, index) => {
+                ${users.slice(0, 10).map((user, index) => {
                     // Ensure user object has required properties
                     const safeUser = {
                         firstName: user.firstName || 'Unknown',
