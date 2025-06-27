@@ -2082,11 +2082,11 @@ html.dark .mce-content-body {
     justify-content: center;
     z-index: 2;
     background-color: rgb(254 202 202);
-    animation: fadeOutImproved 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeOutImproved 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .flash-first-article > .flash-article {
-    animation: vibratingPopup 3s ease-out;
+    animation: vibratingPopup 2s ease-out;
 }
 
 /* Enhanced fade out with smoother transition */
@@ -2147,7 +2147,6 @@ html.dark .mce-content-body {
 
 .flash-scroll-container {
     position: absolute;
-  visibility: hidden;
     top: 0;
     left: 0;
     width: 100%;
@@ -2156,16 +2155,9 @@ html.dark .mce-content-body {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    overflow: hidden;
+    overflow: hidden;    
+}
 
-    
-}
-/* Make visible after delay */
-@keyframes showContainer {
-    to {
-        visibility: visible;
-    }
-}
 @keyframes containerLoop {
     0% { /* Do nothing - let individual slides handle their timing */ }
     100% { /* Reset for next loop */ }
