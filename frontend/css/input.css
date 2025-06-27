@@ -2147,6 +2147,7 @@ html.dark .mce-content-body {
 
 .flash-scroll-container {
     position: absolute;
+  visibility: hidden;
     top: 0;
     left: 0;
     width: 100%;
@@ -2158,6 +2159,12 @@ html.dark .mce-content-body {
     overflow: hidden;
 
     
+}
+/* Make visible after delay */
+@keyframes showContainer {
+    to {
+        visibility: visible;
+    }
 }
 @keyframes containerLoop {
     0% { /* Do nothing - let individual slides handle their timing */ }
@@ -2180,6 +2187,7 @@ html.dark .mce-content-body {
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: auto !important;
     cursor: pointer !important;
+  
     
 }
 
@@ -2225,10 +2233,24 @@ html.dark .mce-content-body {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
     /* Better vertical centering */
     line-height: 1.2;
     margin-top: 2px; /* Slightly lower positioning */
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.flip-horizontal-top {
+    animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes flip-horizontal-top {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(180deg);
+    }
 }
 
 /* Enhanced hover effects */
